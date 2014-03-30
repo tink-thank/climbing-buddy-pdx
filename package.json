@@ -1,0 +1,29 @@
+{
+  "name": "climbing-buddy-pdx",
+  "version": "0.0.0",
+  "description": "A web application to help climbers in Portland, OR find climbing buddies on shot notice.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "~3.5.1",
+    "orchestrate": "~0.0.8",
+    "passport": "~0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tink-thank/climbing-buddy-pdx.git"
+  },
+  "keywords": [
+    "climbing",
+    "pdx"
+  ],
+  "author": "tink-thank",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tink-thank/climbing-buddy-pdx/issues"
+  },
+  "homepage": "https://github.com/tink-thank/climbing-buddy-pdx"
+}

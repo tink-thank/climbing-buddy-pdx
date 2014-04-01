@@ -1,5 +1,1 @@
-var _ = require('underscore');
-var backbone = require('backbone');
-var handlebars = require('handlebars');
-
-console.log('underscore = ' + _.VERSION);
+!function e(r,n,t){function o(u,f){if(!n[u]){if(!r[u]){var s="function"==typeof require&&require;if(!f&&s)return s(u,!0);if(i)return i(u,!0);throw new Error("Cannot find module '"+u+"'")}var a=n[u]={exports:{}};r[u][0].call(a.exports,function(e){var n=r[u][1][e];return o(n?n:e)},a,a.exports,e,r,n,t)}return n[u].exports}for(var i="function"==typeof require&&require,u=0;u<t.length;u++)o(t[u]);return o}({1:[function(e){$(function(){var r=e("./views/testview.js"),n=new Thorax.View({greeting:"Hello",template:Handlebars.compile("{{greeting}} world!")});n.appendTo("#sidebar"),r()})},{"./views/testview.js":2}],2:[function(e,r){function n(){console.log("word to your mother")}r.exports=n},{}]},{},[1]);

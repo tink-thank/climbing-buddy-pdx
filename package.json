@@ -6,7 +6,10 @@
   "dependencies": {
     "express": "~3.5.1",
     "orchestrate": "~0.0.8",
-    "passport": "~0.2.0"
+    "passport": "~0.2.0",
+    "passport-facebook": "~1.0.3",
+    "passport-google": "~0.3.0",
+    "passport-local": "~1.0.0"
   },
   "devDependencies": {},
   "scripts": {

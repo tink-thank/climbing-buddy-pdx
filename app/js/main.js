@@ -1,12 +1,21 @@
-$(function () {
-  var derp = require('./views/testview.js')
+var Posting = require('./models/posting.js');
+var Postings = require('./collections/postings.js');
+var PostingsView = require('./views/posting-view.js');
+var postingsViewTemplate = require('./templates/posting.handlebars');
+var helloTemplate = require('./templates/hello-world.handlebars');
 
-  var view = new Thorax.View({
-    greeting: "Hello",
-    template: Handlebars.compile("{{greeting}} world!")
-  });
-  view.appendTo('#sidebar');
+$(function () {
+  var postingModel = new Posting();
+  var postingsCollection = new Postings();
   
-  derp();  
+  var postingsView = new PostingsView({collection: postingsCollection, template: postingsViewTemplate});
+  
+var view = new Thorax.View({
+  greeting: "Hello",
+  template: helloTemplate
+});
+view.appendTo('body');
+
+  
   
 })

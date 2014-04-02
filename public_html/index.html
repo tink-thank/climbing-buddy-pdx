@@ -51,31 +51,33 @@
     <div class="container">
       <div class="row row-offcanvas row-offcanvas-left">        
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">          
-          <aside id="go-climb-add" class="panel-default">
-            I'm climbing at:
-            <select class="form-control form-inline">
-              <option>The Circuit NE</option>
-              <option>The Circuit SW</option>
-              <option>Portland Rock Gym</option>
-            </select>
-            I'm going in:
-            <select class="form-control form-inline">
-              <option>Now!</option>
-              <option>15 minutes</option>
-              <option>30 minutes</option>
-              <option>45 minutes</option>
-              <option>1 hour</option>
-            </select>
-            I'm climbing for:
-            <select class="form-control form-inline">
-              <option>30 minutes</option>
-              <option>1 hour</option>
-              <option>1.5 hours</option>
-              <option>2 hours</option>              
-            </select>
-            More Info for fun:
-            <textarea class="form-control" rows="3"></textarea>
-            <button class="btn btn-default" id="submit-button">Go Climbing!</button>
+          <aside class="panel-default">
+
+              <select class="form-control form-inline" name="climb-gym">
+                <option value="null">I'm Climbing at:</option>
+                <option value="circuit-ne">The Circuit NE</option>
+                <option value="circuit-sw">The Circuit SW</option>
+                <option value="prg">Portland Rock Gym</option>
+              </select>
+              <select class="form-control form-inline" name="climb-eta">
+                <option value="null">I'm going in:</option>
+                <option value="0">Now!</option>
+                <option value="15">15 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+                <option value="60">1 hour</option>
+              </select>
+              <select class="form-control form-inline" name="climb-length">
+                <option value="null">I'm climbing for:</option>
+                <option value="30">30 minutes</option>
+                <option value="60">1 hour</option>
+                <option value="90">1.5 hours</option>
+                <option value="120">2 hours</option>              
+              </select>
+              More Info for fun:
+              <textarea class="form-control" rows="3" type="text" name="climb-details"></textarea>
+              <button class="btn btn-default" id="submit-button" type="submit">Go Climbing!</button>
+
           </aside>
         </div>        
 

@@ -5,11 +5,18 @@
     </div>
     <div class="col-xs-7">
       <h4>{{user}}</h4>
-      <p>Going climbing at {{climb-gym}} for about {{climb-duration}}</p>
+      <p>Going climbing at {{climb-gym}} for about {{climb-duration}} minutes</p>
       {{#if climb-details}}
-        <em>{{climb-details}}</em>
+        <em>{{climb-details}}</em><br/>
       {{/if}}
       <small>posted {{climb-eta}} minutes ago</small>
+      {{#if replies}}
+        {{#each replies}}
+          <h4>{{this.user}}</h4>
+          <p>{{this.message}}</p>
+          <small>{{this.time}}</small>
+        {{/each}}
+      {{/if}}
 
     </div>
     <div class="col-xs-2">

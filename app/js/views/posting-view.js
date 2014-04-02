@@ -1,10 +1,6 @@
-//var template = require('../templates/posting.hbs');
-
 var PostingView = Thorax.View.extend({
 
-  tagName: 'li',
-
-  className: 'list-group-item',
+  el: '#main',
 
   initialize: function () {
     this.render();

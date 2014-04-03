@@ -1,5 +1,6 @@
 var express  = require('express'),
     passport = require('passport');
+var color    = require('colors');
 
 var app      = express();
 
@@ -15,9 +16,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
 
-app.get('/', function(req, res){
-    res.send('tested');
-});
+//app.get('/', function(req, res){
+//    res.send('tested');
+//});
+
+app.use(express.static(__dirname + '/public_html'));
 
 app.listen(port);
-console.log('The magic happens on port ' + port);
+console.log('[' + 'tink-thank'.green.bold + ']' + ' The magic happens on port '.bold + port.toString().bold)

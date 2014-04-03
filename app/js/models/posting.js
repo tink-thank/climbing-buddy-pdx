@@ -7,9 +7,10 @@ var Posting = Thorax.Model.extend({
     'climb-details':'Sending V-10\'s like what',
     'replies':[
       {'user':'Chris Sharma','message':'I will see you there in 15','time':' Wed, 1:00 PM'},
-      {'user':'Sasha Digulian','message':'Tore a pulley, no climbing for me','time':' Wed, 4:35 PM'}
+      {'user':'Sasha Digulian','message':'Sprained my ankle, no climbing for me','time':' Wed, 4:35 PM'}
     ]
   }
+  
 });
 
 module.exports = Posting;

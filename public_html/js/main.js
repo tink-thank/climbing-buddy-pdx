@@ -2,19 +2,17 @@
 var Posting = require('./models/posting.js');
 //var Postings = require('./collections/postings.js');
 var PostingView = require('./views/posting-view.js');
-var postingsViewTemplate = require('./templates/posting.handlebars');
+var postingsViewTemplate = require('../templates/posting.handlebars');
 
 $(function () {
   var postingModel = new Posting();
   var postingView = new PostingView({model: postingModel, template: postingsViewTemplate});
   //var postingsCollection = new Postings();
   
-  //var postingsView = new PostingsView({collection: postingsCollection, template: postingsViewTemplate});
-
+  //var postingsView = new PostingsView({collection: postingsCollection, template: postingsViewTemplate});  
   
-  
-})
-},{"./models/posting.js":2,"./templates/posting.handlebars":3,"./views/posting-view.js":4}],2:[function(require,module,exports){
+});
+},{"../templates/posting.handlebars":4,"./models/posting.js":2,"./views/posting-view.js":3}],2:[function(require,module,exports){
 var Posting = Thorax.Model.extend({
   defaults:{
     'user':'Alex Honnold',
@@ -24,13 +22,26 @@ var Posting = Thorax.Model.extend({
     'climb-details':'Sending V-10\'s like what',
     'replies':[
       {'user':'Chris Sharma','message':'I will see you there in 15','time':' Wed, 1:00 PM'},
-      {'user':'Sasha Digulian','message':'Tore a pulley, no climbing for me','time':' Wed, 4:35 PM'}
+      {'user':'Sasha Digulian','message':'Sprained my ankle, no climbing for me','time':' Wed, 4:35 PM'}
     ]
   }
+  
 });
 
 module.exports = Posting;
 },{}],3:[function(require,module,exports){
+var PostingView = Thorax.View.extend({
+
+  el: '#main',
+
+  initialize: function () {
+    this.render();
+  },
+
+});
+
+module.exports = PostingView;
+},{}],4:[function(require,module,exports){
 var templater = require("handlebars/runtime").default.template;module.exports = templater(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -94,19 +105,7 @@ function program4(depth0,data) {
   buffer += "\r\n  <div class=\"panel-footer\">\r\n    <textarea class=\"form-control\" rows=\"1\" type=\"text\" name=\"posting-reply\" placeholder=\"Maybe we should meet up...\"></textarea>\r\n    <button class=\"btn btn-default\" id=\"submit-button\" type=\"submit\">Reply</button>   \r\n  </div>\r\n  \r\n</div>\r\n";
   return buffer;
   });
-},{"handlebars/runtime":11}],4:[function(require,module,exports){
-var PostingView = Thorax.View.extend({
-
-  el: '#main',
-
-  initialize: function () {
-    this.render();
-  },
-
-});
-
-module.exports = PostingView;
-},{}],5:[function(require,module,exports){
+},{"handlebars/runtime":11}],5:[function(require,module,exports){
 "use strict";
 /*globals Handlebars: true */
 var base = require("./handlebars/base");

@@ -6,10 +6,10 @@ var browserifyHbs = require('browserify-handlebars');
 
 
 var paths = {
-  devScript: 'app/js/*',
+  devScript: 'app/js/**/*.*',
   prodScript: 'public_html/js',
   templates: 'app/js/templates',
-  scss: 'public_html/scss',
+  scss: 'app/scss/*.scss',
   css: 'public_html/css'  
 }
 
@@ -20,19 +20,19 @@ gulp.task ('scripts', function () {
 //    .pipe(uglify() )  
     .pipe(gulp.dest('public_html/js'));
   
-  console.log('\nYour Scripts are ready! Pip pip cheerio!\n');
+  console.log('\nyour jerbascript are prepared!\n');
 
 });
 
 gulp.task('sass', function () {
-  gulp.src(paths.scss + '/*.scss')
+  gulp.src(paths.scss)
     .pipe(sass())
     .pipe(gulp.dest(paths.css));
   
-  console.log('\nmmm girl, \'dat sass\n');
+  console.log('\nmmm \'dat sass\n');
 });
 
 gulp.task('watch', function () {
   gulp.watch(paths.devScript, ['scripts']);
-  gulp.watch(paths.scss + '/*', ['sass']);
+  gulp.watch(paths.scss, ['sass']);
 });

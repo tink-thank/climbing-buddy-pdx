@@ -17,14 +17,14 @@ $(function () {
 },{"./models/posting.js":2,"./templates/posting.handlebars":3,"./views/posting-view.js":4}],2:[function(require,module,exports){
 var Posting = Thorax.Model.extend({
   defaults:{
-    'user':'Rogue Climber 420 Hero',
+    'user':'Alex Honnold',
     'climb-gym':'circuit-ne',
     'climb-eta':'30',
     'climb-duration':'60',
     'climb-details':'Sending V-10\'s like what',
     'replies':[
-      {'user':'Chris Sharma','message':'I will see you there in 15','time':'time here'},
-      {'user':'Sasha Digulian','message':'Tore a pulley, no climbing for me','time':'time here also'}
+      {'user':'Chris Sharma','message':'I will see you there in 15','time':' Wed, 1:00 PM'},
+      {'user':'Sasha Digulian','message':'Tore a pulley, no climbing for me','time':' Wed, 4:35 PM'}
     ]
   }
 });
@@ -39,59 +39,59 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n        <em>";
+  buffer += "\r\n          <br/><p>";
   if (helper = helpers['climb-details']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0['climb-details']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</em><br/>\r\n      ";
+    + "</p>\r\n        ";
   return buffer;
   }
 
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n        ";
+  buffer += "\r\n    <div class=\"panel-body\">\r\n      ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.replies), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n      ";
+  buffer += "\r\n    </div>\r\n  ";
   return buffer;
   }
 function program4(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n          <h4>"
+  buffer += "\r\n        <div class=\"list-group\">\r\n          <div href=\"#\" class=\"list-group-item\">    \r\n<!--            <div class=\"col-xs-2\"><img class=\"img-responsive\"  src=\"http://www.placekitten.com/40/40\" /></div>-->\r\n            <p class=\"list-group-item-text\">\r\n              <strong>"
     + escapeExpression(((stack1 = (depth0 && depth0.user)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h4>\r\n          <p>"
+    + " </strong>- "
     + escapeExpression(((stack1 = (depth0 && depth0.message)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\r\n          <small>"
+    + "\r\n              <br><small>"
     + escapeExpression(((stack1 = (depth0 && depth0.time)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</small>\r\n        ";
+    + "</small>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      ";
   return buffer;
   }
 
-  buffer += "<div class=\"panel panel-default\">\r\n  <div class=\"panel-body\">\r\n    <div class=\"col-xs-3\">\r\n      <img class=\"img-responsive\" src=\"http://www.placekitten.com/125/125\" />\r\n    </div>\r\n    <div class=\"col-xs-7\">\r\n      <h4>";
+  buffer += "<div class=\"panel panel-default\">\r\n  \r\n  <div class=\"panel-heading\">\r\n    <div class=\"row\">\r\n      <div class=\"col-xs-2\">\r\n        <img src=\"http://www.placekitten.com/75/75\" />\r\n      </div>\r\n      <div class=\"col-xs-10 panel-emphasis\">\r\n        <strong>";
   if (helper = helpers.user) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.user); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h4>\r\n      <p>Going climbing at ";
+    + " </strong><em>@ ";
   if (helper = helpers['climb-gym']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0['climb-gym']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " for about ";
-  if (helper = helpers['climb-duration']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0['climb-duration']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + " minutes</p>\r\n      ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0['climb-details']), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n      <small>posted ";
+    + " in ";
   if (helper = helpers['climb-eta']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0['climb-eta']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " minutes ago</small>\r\n      ";
+    + " for ";
+  if (helper = helpers['climb-duration']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0['climb-duration']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " minutes</em>\r\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0['climb-details']), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\r\n      </div>\r\n    </div>\r\n  </div>\r\n  ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.replies), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n\r\n    </div>\r\n    <div class=\"col-xs-2\">\r\n      <button class=\"btn btn-default\">Reply!</button>\r\n    </div>\r\n  </div>\r\n</div>";
+  buffer += "\r\n  <div class=\"panel-footer\">\r\n    <textarea class=\"form-control\" rows=\"1\" type=\"text\" name=\"posting-reply\" placeholder=\"Maybe we should meet up...\"></textarea>\r\n    <button class=\"btn btn-default\" id=\"submit-button\" type=\"submit\">Reply</button>   \r\n  </div>\r\n  \r\n</div>\r\n";
   return buffer;
   });
 },{"handlebars/runtime":11}],4:[function(require,module,exports){

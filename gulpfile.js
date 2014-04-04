@@ -45,8 +45,7 @@ gulp.task('watch', function () {
       script:'server.js',
       ext: 'js handlebars',
       env: { 'NODE_ENV': 'development' },
-      ignore: ['./app/*', './public_html/*', './app/main.js'],
-      verbose: true
+      ignore: ['./app/*', './public_html/*', './app/main.js']
     })
     .on('restart', function () {
       console.log('[' + 'tink-thank'.green.bold + ']' +' Restarting the server'.bold);
@@ -58,17 +57,15 @@ gulp.task('watch', function () {
   console.log('[' + 'tink-thank'.green.bold + ']' +' Welcome to Gulp!'.bold);
 });
 
-function static () {
-  app.use(express.static(__dirname + '/public_html'));
-  app.listen(9000);
-}
-
 gulp.task('watch-static', function () {
   gulp.watch(paths.devScript, ['scripts']);
   gulp.watch(paths.scss, ['sass']);
+  
+  function static () {
+    app.use(express.static(__dirname + '/public_html'));
+    app.listen(9000);
+  }
   static()
   console.log('[' + 'tink-thank'.green.bold + ']' +' Static at Port 9000'.bold);
-  
-  
   
 })

@@ -1,7 +1,8 @@
 var Posting = require('../models/posting.js');
 
 var Postings = Thorax.Collection.extend({
-  model: Posting
+  model: Posting,
+  localStorage: new Store('postings-thorax')
 });
 
-module.exports = Postings;
+module.exports = new Postings;

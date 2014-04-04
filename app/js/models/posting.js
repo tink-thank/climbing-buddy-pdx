@@ -9,6 +9,13 @@ var Posting = Thorax.Model.extend({
       {'user':'Chris Sharma','message':'I will see you there in 15','time':' Wed, 1:00 PM'},
       {'user':'Sasha Digulian','message':'Sprained my ankle, no climbing for me','time':' Wed, 4:35 PM'}
     ]
+  },
+  
+  //eventually fill this for editing of replies object
+  reply: function () {
+    this.save({
+      replies: ''
+    });
   }
   
 });

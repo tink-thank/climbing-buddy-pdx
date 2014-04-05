@@ -1,3 +1,5 @@
+var formViewTemplate = require('../../templates/form.handlebars');
+
 var FormView = Thorax.View.extend({
   name:'form-view',
 events: {
@@ -13,6 +15,8 @@ events: {
   initialize: function () {
     this.render();
   },
+  
+  template: formViewTemplate
   
   
   

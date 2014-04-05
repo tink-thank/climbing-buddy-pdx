@@ -14,23 +14,22 @@ var FormView = require('./views/form-view.js');
 // View Collections
 
 //Templates
-var postingsViewTemplate = require('../templates/posting.handlebars');
-var formViewTemplate = require('../templates/form.handlebars');
 
 
+//////////////
 
 
 
 
 $(function () {
   var postingModel = new Posting();
-  var postingView = new PostingView({model: postingModel, template: postingsViewTemplate});
+  var postingView = new PostingView({model: postingModel});
   var formView = new FormView({template: formViewTemplate});
   
   Backbone.history.start();
   
 });
-},{"../templates/form.handlebars":5,"../templates/posting.handlebars":6,"./models/posting.js":2,"./views/form-view.js":3,"./views/posting-view.js":4,"backbone.localstorage":7}],2:[function(require,module,exports){
+},{"./models/posting.js":2,"./views/form-view.js":3,"./views/posting-view.js":4,"backbone.localstorage":7}],2:[function(require,module,exports){
 var Posting = Thorax.Model.extend({
   defaults:{
     'user':'Alex Honnold',
@@ -55,6 +54,8 @@ var Posting = Thorax.Model.extend({
 
 module.exports = Posting;
 },{}],3:[function(require,module,exports){
+var formViewTemplate = require('../../templates/form.handlebars');
+
 var FormView = Thorax.View.extend({
   name:'form-view',
 events: {
@@ -71,6 +72,8 @@ events: {
     this.render();
   },
   
+  template: formViewTemplate
+  
   
   
   
@@ -78,46 +81,25 @@ events: {
 });
 
 module.exports = FormView;
-},{}],4:[function(require,module,exports){
+},{"../../templates/form.handlebars":5}],4:[function(require,module,exports){
+var postingsViewTemplate = require('../../templates/posting.handlebars');
+
 var PostingView = Thorax.View.extend({
   
-  events: {
-      'click #form-submit-button': 'addNewPosting'
-  },
-  
-  name:'posting',
+    name:'posting',
 
   el: '#main',
   
-  addNewPosting: function () {
-    
-    var $postingUserIn = 'Default User, please replace'
-    var $postingGymIn = this.$el.find('#climb-gym').val();
-    var $postingEtaIn = this.$el.find('#climb-eta').val();
-    var $postingLengthIn = this.$el.find('#climb-length').val();
-    var $postingDetailsIn = this.$el.find('#climb-details').val();
-
-    this.collection.add({
-      'user':$postingUserIn,
-      'climb-gym':$postingGymIn,
-      'climb-eta':$postingEtaIn,
-      'climb-duration':$postingLengthIn,
-      'climb-details':$postingDetailsIn,
-      'replies':null
-    });
-
-    this.$el.find('input').val('');    
-    
-  },
-
   initialize: function () {
     this.render();
   },
+  
+  template: postingsViewTemplate
 
 });
 
 module.exports = PostingView;
-},{}],5:[function(require,module,exports){
+},{"../../templates/posting.handlebars":6}],5:[function(require,module,exports){
 var templater = require("handlebars/runtime").default.template;module.exports = templater(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};

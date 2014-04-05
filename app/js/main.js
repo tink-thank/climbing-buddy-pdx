@@ -13,17 +13,16 @@ var FormView = require('./views/form-view.js');
 // View Collections
 
 //Templates
-var postingsViewTemplate = require('../templates/posting.handlebars');
-var formViewTemplate = require('../templates/form.handlebars');
 
 
+//////////////
 
 
 
 
 $(function () {
   var postingModel = new Posting();
-  var postingView = new PostingView({model: postingModel, template: postingsViewTemplate});
+  var postingView = new PostingView({model: postingModel});
   var formView = new FormView({template: formViewTemplate});
   
   Backbone.history.start();

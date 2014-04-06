@@ -4,4 +4,4 @@ var Postings = Thorax.Collection.extend({
   model: Posting
 });
 
-module.exports = new Postings;
+module.exports = Postings;

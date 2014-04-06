@@ -1,5 +1,16 @@
+var PostingView = require('./posting-view.js');
+
 var AppView = Thorax.View.extend({
-  tagName:'div',
+  
+  el:'#main',
+  
+  initialize: function () {
+    this.childViews = [];
+    this.listenTo(this.collection, 'add', this.render);
+    this.$postList = this.$el.find('#main');
+    this.render();
+    
+  },
   
   events: {
       'click #form-submit-button': 'addNewPosting'
@@ -24,10 +35,28 @@ var AppView = Thorax.View.extend({
 
     this.$el.find('input').val('');    
     
+  },
+  
+  render: function () {
+    var self = this;
+    
+    this.childViews = [];
+    
+    this.childViews.forEach(function (view) {
+      view.remove();
+    });
+    
+    this.collection.each(function (everyPost) {
+      var postingView = new PostingView({model:everyPost});
+      self.$postList.append(postingView.$el);
+      self.childViews.push(postingView);
+    });
+    
+    
   }
   
   
   
 });
 
-modules.exports = AppView;
+module.exports = AppView;

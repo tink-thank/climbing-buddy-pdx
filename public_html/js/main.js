@@ -7,21 +7,14 @@ var Postings = Thorax.Collection.extend({
 
 module.exports = Postings;
 },{"../models/posting.js":3}],2:[function(require,module,exports){
-// Models
 var Posting = require('./models/posting.js');
 
-// Collections
 var Postings = require('./collections/postings.js');
 
-// Views
 var PostingView = require('./views/posting-view.js');
 var FormView = require('./views/form-view.js');
 
-// View Collections
 var AppView = require('./views/app.js');
-
-//Templates
-
 
 //////////////
 
@@ -29,19 +22,17 @@ var AppView = require('./views/app.js');
 
 
 $(function () {
-  var app = {};
-  window.app = app;
   
   var formView = new FormView();
   
   var postings = new Postings({});
   var appView = new AppView({collection:postings});
+  appView.appendTo('#main');
   
+  var app = {};
+  window.app = app;
   app.appView = appView;
   app.postings = postings;
-
-
-  
   
   Backbone.history.start();
   
@@ -50,6 +41,7 @@ $(function () {
 var Posting = Thorax.Model.extend({
   defaults:{
     'user':'Alex Honnold',
+    'user-img':'kitten.jpg',
     'climb-gym':'circuit-ne',
     'climb-eta':'30',
     'climb-duration':'60',
@@ -77,37 +69,31 @@ var AppView = Thorax.View.extend({
   
   el:'#main',
   
+  events: {
+      'click #posting-submit-button': 'addNewPosting'
+  },
+  
   initialize: function () {
     this.childViews = [];
     this.listenTo(this.collection, 'add', this.render);
     this.$postList = this.$el.find('#main');
-    this.render();
-    
+    this.render();    
   },
   
-  events: {
-      'click #form-submit-button': 'addNewPosting'
+  addNewPosting: function () {    
+    this.collection.create(this.newPosting());    
   },
   
-  addNewPosting: function () {
-    
-    var $postingUserIn = 'Default User, please replace'
-    var $postingGymIn = this.$el.find('#climb-gym').val();
-    var $postingEtaIn = this.$el.find('#climb-eta').val();
-    var $postingLengthIn = this.$el.find('#climb-length').val();
-    var $postingDetailsIn = this.$el.find('#climb-details').val();
-
-    this.collection.add({
-      'user':$postingUserIn,
-      'climb-gym':$postingGymIn,
-      'climb-eta':$postingEtaIn,
-      'climb-duration':$postingLengthIn,
-      'climb-details':$postingDetailsIn,
-      'replies':null
-    });
-
-    this.$el.find('input').val('');    
-    
+  newPosting: function () {
+    return {
+      'user': 'Default User, please replace',
+      'user-img': 'test.jpg',
+      'climb-gym': $("#sidebar").find('#climb-gym').val(),
+      'climb-eta': $("#sidebar").find('#climb-eta').val(),
+      'climb-duration': $("#sidebar").find('#climb-duration').val(),
+      'climb-details': $("#sidebar").find('#climb-details').val(),
+      'replies': null
+    };
   },
   
   render: function () {
@@ -138,25 +124,14 @@ var formViewTemplate = require('../../templates/form.handlebars');
 
 var FormView = Thorax.View.extend({
   name:'form-view',
-events: {
-    "submit form": function(event) {
-      event.preventDefault();
-      this.collection.add(this.serialize());
-      return this.$('input[select="climb-gym"]').val('');
-    }
-  },
+  
   el:'#sidebar',
-//  render: function () {    
-//  },
+  
   initialize: function () {
     this.render();
   },
   
   template: formViewTemplate
-  
-  
-  
-  
   
 });
 
@@ -165,8 +140,7 @@ module.exports = FormView;
 var postingsViewTemplate = require('../../templates/posting.handlebars');
 
 var PostingView = Thorax.View.extend({
-  
-    name:'posting',
+  name:'posting',
 
   el: '#main',
   
@@ -174,6 +148,7 @@ var PostingView = Thorax.View.extend({
     this.render();
   },
   
+  //render: function () {},
   template: postingsViewTemplate
 
 });
@@ -186,7 +161,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<aside class=\"panel-default\">\r\n  <select class=\"form-control form-inline\" id=\"climb-gym\" name=\"climb-gym\">\r\n    <option value=\"null\">I'm Climbing at:</option>\r\n    <option value=\"circuit-ne\">The Circuit NE</option>\r\n    <option value=\"circuit-sw\">The Circuit SW</option>\r\n    <option value=\"prg\">Portland Rock Gym</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-eta\" name=\"climb-eta\">\r\n    <option value=\"null\">I'm going in:</option>\r\n    <option value=\"0\">Now!</option>\r\n    <option value=\"15\">15 minutes</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"45\">45 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-length\" name=\"climb-length\">\r\n    <option value=\"null\">I'm climbing for:</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n    <option value=\"90\">1.5 hours</option>\r\n    <option value=\"120\">2 hours</option>              \r\n  </select>\r\n  More Info for fun:\r\n  <textarea class=\"form-control\" rows=\"3\" type=\"text\" id=\"climb-details\" name=\"climb-details\" placeholder=\"Meet me over by the...\"></textarea>\r\n  <button class=\"btn btn-default\" id=\"form-submit-button\" type=\"submit\">Go Climbing!</button>\r\n</aside>";
+  return "<aside class=\"panel-default\">\r\n  <select class=\"form-control form-inline\" id=\"climb-gym\" name=\"climb-gym\">\r\n    <option value=\"null\">I'm Climbing at:</option>\r\n    <option value=\"circuit-ne\">The Circuit NE</option>\r\n    <option value=\"circuit-sw\">The Circuit SW</option>\r\n    <option value=\"prg\">Portland Rock Gym</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-eta\" name=\"climb-eta\">\r\n    <option value=\"null\">I'm going in:</option>\r\n    <option value=\"0\">Now!</option>\r\n    <option value=\"15\">15 minutes</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"45\">45 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-length\" name=\"climb-length\">\r\n    <option value=\"null\">I'm climbing for:</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n    <option value=\"90\">1.5 hours</option>\r\n    <option value=\"120\">2 hours</option>              \r\n  </select>\r\n  More Info for fun:\r\n  <textarea class=\"form-control\" rows=\"3\" type=\"text\" id=\"climb-details\" name=\"climb-details\" placeholder=\"Meet me over by the...\"></textarea>\r\n  \r\n  <button class=\"btn btn-danger\" id=\"posting-submit-button\" type=\"submit\">Go Climbing!</button>\r\n</aside>";
   });
 },{"handlebars/runtime":15}],8:[function(require,module,exports){
 var templater = require("handlebars/runtime").default.template;module.exports = templater(function (Handlebars,depth0,helpers,partials,data) {
@@ -249,7 +224,7 @@ function program4(depth0,data) {
   buffer += "\r\n      </div>\r\n    </div>\r\n  </div>\r\n  ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.replies), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  <div class=\"panel-footer\">\r\n    <textarea class=\"form-control\" rows=\"1\" type=\"text\" name=\"posting-reply\" placeholder=\"Maybe we should meet up...\"></textarea>\r\n    <button class=\"btn btn-default\" id=\"form-submit-button\" type=\"submit\">Reply</button>   \r\n  </div>\r\n  \r\n</div>\r\n";
+  buffer += "\r\n  <div class=\"panel-footer\">\r\n    <textarea class=\"form-control\" rows=\"1\" type=\"text\" name=\"posting-reply\" id=\"posting-reply\" placeholder=\"Maybe we should meet up...\"></textarea>\r\n    <button class=\"btn btn-default\" id=\"posting-reply-button\" type=\"submit\">Reply</button>   \r\n  </div>\r\n  \r\n</div>\r\n";
   return buffer;
   });
 },{"handlebars/runtime":15}],9:[function(require,module,exports){

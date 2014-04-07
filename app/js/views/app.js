@@ -4,37 +4,31 @@ var AppView = Thorax.View.extend({
   
   el:'#main',
   
+  events: {
+      'click #posting-submit-button': 'addNewPosting'
+  },
+  
   initialize: function () {
     this.childViews = [];
     this.listenTo(this.collection, 'add', this.render);
     this.$postList = this.$el.find('#main');
-    this.render();
-    
+    this.render();    
   },
   
-  events: {
-      'click #form-submit-button': 'addNewPosting'
+  addNewPosting: function () {    
+    this.collection.create(this.newPosting());    
   },
   
-  addNewPosting: function () {
-    
-    var $postingUserIn = 'Default User, please replace'
-    var $postingGymIn = this.$el.find('#climb-gym').val();
-    var $postingEtaIn = this.$el.find('#climb-eta').val();
-    var $postingLengthIn = this.$el.find('#climb-length').val();
-    var $postingDetailsIn = this.$el.find('#climb-details').val();
-
-    this.collection.add({
-      'user':$postingUserIn,
-      'climb-gym':$postingGymIn,
-      'climb-eta':$postingEtaIn,
-      'climb-duration':$postingLengthIn,
-      'climb-details':$postingDetailsIn,
-      'replies':null
-    });
-
-    this.$el.find('input').val('');    
-    
+  newPosting: function () {
+    return {
+      'user': 'Default User, please replace',
+      'user-img': 'test.jpg',
+      'climb-gym': $("#sidebar").find('#climb-gym').val(),
+      'climb-eta': $("#sidebar").find('#climb-eta').val(),
+      'climb-duration': $("#sidebar").find('#climb-duration').val(),
+      'climb-details': $("#sidebar").find('#climb-details').val(),
+      'replies': null
+    };
   },
   
   render: function () {

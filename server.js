@@ -9,10 +9,9 @@ var db = require('orchestrate')(process.env.ORCHESTRATE_API_KEY);
 
 authUser = function (profile) {
   var deferred = Q.defer();
-  console.log(profile);
 
   // use the provider and the user (incase we support other providers down the road)
-  var key = 'jane1';
+  var key = 'profile.provider + '-' + profile.username';
 
   // the user data we want to store. this is mostly to clean up any extra data we don't need
   var user = {

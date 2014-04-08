@@ -1,5 +1,6 @@
 var express  = require('express'),
-    passport = require('passport');
+    passport = require('passport'),
+    path     = require('path');
 
 var app      = express();
 
@@ -14,9 +15,10 @@ app.use(express.session({ secret: 'cookie monster' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public_html')));
 
 app.get('/', function(req, res){
-    res.send('tested');
+    res.sendfile('./public_html/index.html');
 });
 
 app.listen(port);

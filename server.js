@@ -27,7 +27,7 @@ authUser = function (profile) {
 
   // put the user into our DB if it's not currently there
   // this uses Orchestrate's condition PUT functionality
-  db.put('testUsers', key, user)
+  db.put('testUsers', key, user, false)
   .then(function () {
     // add the key to the session data
     user.key = key;
@@ -38,7 +38,7 @@ authUser = function (profile) {
   });
 
   return deferred.promise;
-};
+}
 
 var app      = express();
 

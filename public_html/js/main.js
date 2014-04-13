@@ -81,7 +81,8 @@ var AppView = Thorax.View.extend({
   },
   
   addNewPosting: function () {    
-    this.collection.create(this.newPosting());    
+    var self = this;
+    this.collection.add(self.newPosting());    
   },
   
   newPosting: function () {

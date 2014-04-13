@@ -7,7 +7,7 @@ var db = require('orchestrate')(process.env.ORCHESTRATE_API_KEY);
 
 // db.put('testUsers', 'test1', {name: 'Jhenna'});
 
-authUser = function (profile) {
+authUserGit = function (profile) {
   var deferred = Q.defer();
 
   // use the provider and the user (incase we support other providers down the road)
@@ -60,7 +60,7 @@ passport.use(new GitHubStrategy(
     },
     function(accessToken, refreshToken, profile, done) {
         // on successful auth
-        authUser(profile)
+        authUserGit(profile)
         .then(function (user) {
           done(null, user);
         });
@@ -88,6 +88,11 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
     // Successful authentication, redirect home.
     res.redirect('/');
 });
+
+// db.get("testUsers", "github-trippel")
+//   .then(function (result){
+//     console.log(result.body.avatar);
+//   }).fail(function(err){console.log(err)});
 
 app.listen(port);
 console.log('The magic happens on port ' + port);

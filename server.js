@@ -78,10 +78,16 @@ app.use(passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public_html')));
 
-app.get('/', function(req, res){
+// ===========================
+// ROUTES
+// ===========================
+
+// Homepage
+app.get('/', isLoggedIn, function(req, res){
     res.sendfile('./public_html/index.html');
 });
 
+// Github authentication
 app.get('/auth/github', passport.authenticate('github'));
 
 app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }), function(req, res) {
@@ -96,3 +102,14 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
 
 app.listen(port);
 console.log('The magic happens on port ' + port);
+
+// route middleware to makse sure user is logged in
+function isLoggedIn(req, res, next) {
+  // if user is authenticated in the session proceed
+  if (req.isAuthenticated()){
+    console.log("Authenticated!");
+    return next();
+  }
+  // if they aren't redirect to login
+  res.redirect('/auth/github');
+}

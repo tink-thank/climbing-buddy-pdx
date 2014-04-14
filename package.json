@@ -10,7 +10,9 @@
     "passport-facebook": "~1.0.3",
     "passport-google": "~0.3.0",
     "passport-local": "~1.0.0",
-    "path": "~0.4.9"
+    "path": "~0.4.9",
+    "passport-github": "~0.1.5",
+    "q": "~1.0.1"
   },
   "devDependencies": {
     "gulp": "~3.6.0",

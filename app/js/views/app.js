@@ -16,20 +16,17 @@ var AppView = Thorax.View.extend({
   },
   
   addNewPosting: function () {    
-    var self = this;
-    this.collection.add(self.newPosting());    
-  },
-  
-  newPosting: function () {
-    return {
+    console.log("I'm clicked, yo");
+    this.collection.add({
+
       'user': 'Default User, please replace',
       'user-img': 'test.jpg',
       'climb-gym': $("#sidebar").find('#climb-gym').val(),
       'climb-eta': $("#sidebar").find('#climb-eta').val(),
       'climb-duration': $("#sidebar").find('#climb-duration').val(),
       'climb-details': $("#sidebar").find('#climb-details').val(),
-      'replies': null
-    };
+      'replies': null      
+    });    
   },
   
   render: function () {

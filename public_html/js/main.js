@@ -81,20 +81,17 @@ var AppView = Thorax.View.extend({
   },
   
   addNewPosting: function () {    
-    var self = this;
-    this.collection.add(self.newPosting());    
-  },
-  
-  newPosting: function () {
-    return {
+    console.log("I'm clicked, yo");
+    this.collection.add({
+
       'user': 'Default User, please replace',
       'user-img': 'test.jpg',
       'climb-gym': $("#sidebar").find('#climb-gym').val(),
       'climb-eta': $("#sidebar").find('#climb-eta').val(),
       'climb-duration': $("#sidebar").find('#climb-duration').val(),
       'climb-details': $("#sidebar").find('#climb-details').val(),
-      'replies': null
-    };
+      'replies': null      
+    });    
   },
   
   render: function () {
@@ -162,7 +159,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<aside class=\"panel-default\">\r\n  <select class=\"form-control form-inline\" id=\"climb-gym\" name=\"climb-gym\">\r\n    <option value=\"null\">I'm Climbing at:</option>\r\n    <option value=\"circuit-ne\">The Circuit NE</option>\r\n    <option value=\"circuit-sw\">The Circuit SW</option>\r\n    <option value=\"prg\">Portland Rock Gym</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-eta\" name=\"climb-eta\">\r\n    <option value=\"null\">I'm going in:</option>\r\n    <option value=\"0\">Now!</option>\r\n    <option value=\"15\">15 minutes</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"45\">45 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-length\" name=\"climb-length\">\r\n    <option value=\"null\">I'm climbing for:</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n    <option value=\"90\">1.5 hours</option>\r\n    <option value=\"120\">2 hours</option>              \r\n  </select>\r\n  More Info for fun:\r\n  <textarea class=\"form-control\" rows=\"3\" type=\"text\" id=\"climb-details\" name=\"climb-details\" placeholder=\"Meet me over by the...\"></textarea>\r\n  \r\n  <button class=\"btn btn-danger\" id=\"posting-submit-button\" type=\"submit\">Go Climbing!</button>\r\n</aside>";
+  return "<aside class=\"panel-default\">\r\n  <select class=\"form-control form-inline\" id=\"climb-gym\" name=\"climb-gym\">\r\n    <option value=\"null\">I'm Climbing at:</option>\r\n    <option value=\"circuit-ne\">The Circuit NE</option>\r\n    <option value=\"circuit-sw\">The Circuit SW</option>\r\n    <option value=\"prg\">Portland Rock Gym</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-eta\" name=\"climb-eta\">\r\n    <option value=\"null\">I'm going in:</option>\r\n    <option value=\"0\">Now!</option>\r\n    <option value=\"15\">15 minutes</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"45\">45 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-length\" name=\"climb-length\">\r\n    <option value=\"null\">I'm climbing for:</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n    <option value=\"90\">1.5 hours</option>\r\n    <option value=\"120\">2 hours</option>              \r\n  </select>\r\n  More Info for fun:\r\n  <textarea class=\"form-control\" rows=\"3\" type=\"text\" id=\"climb-details\" name=\"climb-details\" placeholder=\"Meet me over by the...\"></textarea>\r\n  \r\n  <button class=\"btn btn-danger\" id=\"posting-submit-button\">Go Climbing!</button>\r\n</aside>";
   });
 },{"handlebars/runtime":15}],8:[function(require,module,exports){
 var templater = require("handlebars/runtime").default.template;module.exports = templater(function (Handlebars,depth0,helpers,partials,data) {

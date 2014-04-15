@@ -111,5 +111,5 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   // if they aren't redirect to login
-  res.redirect('/auth/github');
+  res.redirect('login.html');
 }

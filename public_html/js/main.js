@@ -39,37 +39,37 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n          <br/><p>";
+  buffer += "\n          <br/><p>";
   if (helper = helpers['climb-details']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0['climb-details']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\r\n        ";
+    + "</p>\n        ";
   return buffer;
   }
 
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n    <div class=\"panel-body\">\r\n      ";
+  buffer += "\n    <div class=\"panel-body\">\n      ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.replies), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </div>\r\n  ";
+  buffer += "\n    </div>\n  ";
   return buffer;
   }
 function program4(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n        <div class=\"list-group\">\r\n          <div href=\"#\" class=\"list-group-item\">    \r\n<!--            <div class=\"col-xs-2\"><img class=\"img-responsive\"  src=\"http://www.placekitten.com/40/40\" /></div>-->\r\n            <p class=\"list-group-item-text\">\r\n              <strong>"
+  buffer += "\n        <div class=\"list-group\">\n          <div href=\"#\" class=\"list-group-item\">    \n<!--            <div class=\"col-xs-2\"><img class=\"img-responsive\"  src=\"http://www.placekitten.com/40/40\" /></div>-->\n            <p class=\"list-group-item-text\">\n              <strong>"
     + escapeExpression(((stack1 = (depth0 && depth0.user)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " </strong>- "
     + escapeExpression(((stack1 = (depth0 && depth0.message)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\r\n              <br><small>"
+    + "\n              <br><small>"
     + escapeExpression(((stack1 = (depth0 && depth0.time)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</small>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      ";
+    + "</small>\n            </p>\n          </div>\n        </div>\n      ";
   return buffer;
   }
 
-  buffer += "<div class=\"panel panel-default\">\r\n  \r\n  <div class=\"panel-heading\">\r\n    <div class=\"row\">\r\n      <div class=\"col-xs-2\">\r\n        <img src=\"http://www.placekitten.com/75/75\" />\r\n      </div>\r\n      <div class=\"col-xs-10 panel-emphasis\">\r\n        <strong>";
+  buffer += "<div class=\"panel panel-default\">\n  \n  <div class=\"panel-heading\">\n    <div class=\"row\">\n      <div class=\"col-xs-2\">\n        <img src=\"http://www.placekitten.com/75/75\" />\n      </div>\n      <div class=\"col-xs-10 panel-emphasis\">\n        <strong>";
   if (helper = helpers.user) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.user); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -85,13 +85,13 @@ function program4(depth0,data) {
   if (helper = helpers['climb-duration']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0['climb-duration']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " minutes</em>\r\n        ";
+    + " minutes</em>\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0['climb-details']), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n      </div>\r\n    </div>\r\n  </div>\r\n  ";
+  buffer += "\n      </div>\n    </div>\n  </div>\n  ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.replies), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  <div class=\"panel-footer\">\r\n    <textarea class=\"form-control\" rows=\"1\" type=\"text\" name=\"posting-reply\" placeholder=\"Maybe we should meet up...\"></textarea>\r\n    <button class=\"btn btn-default\" id=\"submit-button\" type=\"submit\">Reply</button>   \r\n  </div>\r\n  \r\n</div>\r\n";
+  buffer += "\n  <div class=\"panel-footer\">\n    <textarea class=\"form-control\" rows=\"1\" type=\"text\" name=\"posting-reply\" placeholder=\"Maybe we should meet up...\"></textarea>\n    <button class=\"btn btn-default\" id=\"submit-button\" type=\"submit\">Reply</button>   \n  </div>\n  \n</div>\n";
   return buffer;
   });
 },{"handlebars/runtime":11}],4:[function(require,module,exports){

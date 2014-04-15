@@ -20,7 +20,7 @@ var paths = {
   templates: 'app/js/templates',
   scss: 'app/scss/*.scss',
   css: 'public_html/css'
-
+}
 //Compiles all the Thorax/Backbone logic into a single file
 //via Browserify for our browser. Hence the name. Very clever.
 //Also pipes in Handlebar templates.

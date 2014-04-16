@@ -157,13 +157,31 @@ app.get('/', isLoggedIn, function(req, res){
     res.sendfile('./public_html/index.html');
 });
 
+// Login Page
+app.get('/login', function (req, res) {
+  res.sendfile('./public_html/login.html');
+});
+
+app.post('/login', function (req, res) {
+    res.redirect('/auth/github');
+  });
+
 // Github authentication
-app.get('/auth/github', passport.authenticate('github'), function(req, res){});
+app.get('/auth/github', passport.authenticate('github'), function (req, res){});
 
 app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }), function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
 });
+
+//logout
+app.get('/logout', function(req, res){
+  req.session.destroy(function (err) {
+    if (err) console.log(err);
+    console.log("LOGGED OUT!");
+    res.redirect('/login'); //Inside a callback… bulletproof!
+  });
+})
 
 app.listen(port);
 console.log('The magic happens on port ' + port);
@@ -184,7 +202,7 @@ function isLoggedIn(req, res, next) {
   else{
     console.log("Authorization failed!");
     // if they aren't redirect to login
-    res.redirect('/auth/github');
+    res.redirect('/login');
   }
   
 }

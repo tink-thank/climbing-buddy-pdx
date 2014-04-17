@@ -7,36 +7,36 @@ var db = require('orchestrate')(process.env.ORCHESTRATE_API_KEY);
 
 // db.put('testUsers', 'test1', {name: 'Jhenna'});
 
-// findByKey = function (key){
-//   var deferredKey = Q.defer();
+findByKey = function (key){
+  var deferredKey = Q.defer();
 
-//     db.search('testUsers', key)
-//       .then(function (result){
-//         //in this case deserialized user key did match the one in database
-//         if (result.body.results[0] !== undefined) {
-//           db.get('testUsers', key)
-//             .then(function (result){
-//             console.log("from the get deserialize:")
-//             console.log(result.body);
-//             deferredKey.resolve([null, result.body]);
-//             })
-//             .fail(function (err){
-//               console.log(err.body);
-//               deferredKey.resolve([err, false]);
-//             })
-//         } 
-//         //in this case the deserialized user key did NOT match the one in the database
-//         else{
-//           var err = "could not deserialize this user, there was no match with database";
-//           deferredKey.resolve([err, false]);
-//         }
-//       })
-//       .fail(function (err) {
-//         console.log(err.body);
-//       });
+    db.search('testUsers', key)
+      .then(function (result){
+        //in this case deserialized user key did match the one in database
+        if (result.body.results[0] !== undefined) {
+          db.get('testUsers', key)
+            .then(function (result){
+            console.log("from the get deserialize:")
+            console.log(result.body);
+            deferredKey.resolve([null, result.body]);
+            })
+            .fail(function (err){
+              console.log(err.body);
+              deferredKey.resolve([err, false]);
+            })
+        } 
+        //in this case the deserialized user key did NOT match the one in the database
+        else{
+          var err = "could not deserialize this user, there was no match with database";
+          deferredKey.resolve([err, false]);
+        }
+      })
+      .fail(function (err) {
+        console.log(err.body);
+      });
 
-//   return deferredKey.promise;
-// }
+  return deferredKey.promise;
+}
 
 authUserGit = function (profile) {
   var deferred = Q.defer();
@@ -100,24 +100,24 @@ var app      = express();
 
 var port     = process.env.PORT || 5000;
 
-// passport.serializeUser(function(user, done) {
-//     console.log("will serialize: " + user.cereal)
-//     done(null, user.cereal);
-// });
-
-// passport.deserializeUser(function(cereal, done) {
-//   findByKey(cereal)
-//   .then(function (result){
-//     done(result[0], result[1])
-//   });
-// });
 passport.serializeUser(function(user, done) {
-    done(null, user);
+    console.log("will serialize: " + user.cereal)
+    done(null, user.cereal);
 });
 
-passport.deserializeUser(function(user, done) {
-    done(null, user)
+passport.deserializeUser(function(cereal, done) {
+  findByKey(cereal)
+  .then(function (result){
+    done(result[0], result[1])
+  });
 });
+// passport.serializeUser(function(user, done) {
+//     done(null, user);
+// });
+
+// passport.deserializeUser(function(user, done) {
+//     done(null, user)
+// });
 
 passport.use(new GitHubStrategy(
     {
@@ -126,14 +126,13 @@ passport.use(new GitHubStrategy(
         callbackURL: process.env.GITHUB_CALLBACK
     },
     function(accessToken, refreshToken, profile, done) {
-        process.nextTick(function () {// on successful auth
+              // on successful auth
                 authUserGit(profile)
                 .then(function (result) {
                   console.log("made it authorization!");
                   // console.log("user: " + result[1]);
                   return done(result[0], result[1]);
                 });
-        });
     }
 ));
 
@@ -147,6 +146,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public_html')));
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  if ('OPTIONS' == req.method) {
+       res.send(200);
+   } else {
+       next();
+   }
+});
 
 // ===========================
 // ROUTES
@@ -176,8 +186,8 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
 
 //logout
 app.get('/logout', function(req, res){
-  req.session.destroy(function (err) {
-    if (err) console.log(err);
+  req.session.destroy(function () {
+    // if (err) console.log(err);
     console.log("LOGGED OUT!");
     res.redirect('/login'); //Inside a callback… bulletproof!
   });

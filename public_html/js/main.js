@@ -7,25 +7,30 @@ var Postings = Thorax.Collection.extend({
 
 module.exports = Postings;
 },{"../models/posting.js":3}],2:[function(require,module,exports){
+var Posting = require('./models/posting.js');
 var Postings = require('./collections/postings.js');
 var FormView = require('./views/form-view.js');
 var PostingView = require('./views/posting-view.js');
 
 $(function () {  
-  var postings = new Postings();
+  var postings = new Postings({model:Posting});
   var postingView = new PostingView({collection:postings})
   var formView = new FormView({collection:postings});
   Backbone.history.start();
 });
-},{"./collections/postings.js":1,"./views/form-view.js":4,"./views/posting-view.js":5}],3:[function(require,module,exports){
+},{"./collections/postings.js":1,"./models/posting.js":3,"./views/form-view.js":4,"./views/posting-view.js":5}],3:[function(require,module,exports){
 var Posting = Thorax.Model.extend({
-  defaults: {
+  defaults:{
     'user':'Alex Honnold',
     'user-img':'kitten.jpg',
     'climb-gym':'circuit-ne',
     'climb-eta':'30',
     'climb-duration':'60',
-    'climb-details':'Sending V-10\'s like what'
+    'climb-details':'Sending V-10\'s like what',
+    'replies':[
+      {'user':'Chris Sharma','message':'I will see you there in 15','time':' Wed, 1:00 PM'},
+      {'user':'Sasha Digulian','message':'Sprained my ankle, no climbing for me','time':' Wed, 4:35 PM'}
+    ]
   }
   
 });

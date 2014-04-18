@@ -1,6 +1,5 @@
 html, body {
-  overflow-x: hidden;
-  /* Prevent scroll on narrow devices */ }
+  overflow-x: hidden; }
 
 body {
   padding-top: 70px; }
@@ -19,22 +18,17 @@ footer {
   .row-offcanvas-left {
     left: 0; }
   .row-offcanvas-right .sidebar-offcanvas {
-    right: -50%;
-    /* 6 columns */ }
+    right: -50%; }
   .row-offcanvas-left .sidebar-offcanvas {
-    left: -50%;
-    /* 6 columns */ }
+    left: -50%; }
   .row-offcanvas-right.active {
-    right: 50%;
-    /* 6 columns */ }
+    right: 50%; }
   .row-offcanvas-left.active {
-    left: 50%;
-    /* 6 columns */ }
+    left: 50%; }
   .sidebar-offcanvas {
     position: absolute;
     top: 0;
-    width: 50%;
-    /* 6 columns */ } }
+    width: 50%; } }
 
 .panel-climb {
   background-color: brown;
@@ -43,3 +37,6 @@ footer {
 
 .panel-emphasis {
   font-size: 1.2em; }
+
+#main {
+  min-height: 310px; }

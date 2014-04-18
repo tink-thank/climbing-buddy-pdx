@@ -1,2 +1,4 @@
 node_modules/**
 appCopy/**
+/public_html/css/
+/public_html/js/

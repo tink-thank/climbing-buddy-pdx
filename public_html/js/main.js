@@ -7,18 +7,21 @@ var Postings = Thorax.Collection.extend({
 
 module.exports = Postings;
 },{"../models/posting.js":3}],2:[function(require,module,exports){
-var Posting = require('./models/posting.js');
 var Postings = require('./collections/postings.js');
 var FormView = require('./views/form-view.js');
 var PostingView = require('./views/posting-view.js');
 
 $(function () {  
-  var postings = new Postings({model:Posting});
+  var postings = new Postings({});
   var postingView = new PostingView({collection:postings})
+  
+  
+  
   var formView = new FormView({collection:postings});
+  
   Backbone.history.start();
 });
-},{"./collections/postings.js":1,"./models/posting.js":3,"./views/form-view.js":4,"./views/posting-view.js":5}],3:[function(require,module,exports){
+},{"./collections/postings.js":1,"./views/form-view.js":4,"./views/posting-view.js":5}],3:[function(require,module,exports){
 var Posting = Thorax.Model.extend({
   defaults:{
     'user':'Alex Honnold',

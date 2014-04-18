@@ -73,6 +73,7 @@ app.get('/login', function (req, res) {
   res.sendfile('./public_html/login.html');
 });
 // When the 'Login' button is clicked send on to user auth with GitHub
+// possibly do not need this if information from login page is not sent from a POST method
 app.post('/login', function (req, res) {
     res.redirect('/auth/github');
   });

@@ -1,7 +1,7 @@
-var Posting = require('../models/posting.js');
+var posting = require('../models/posting.js');
 
 var Postings = Thorax.Collection.extend({
-  model: Posting
+  model: posting
 });
 
 module.exports = Postings;

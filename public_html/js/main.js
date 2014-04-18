@@ -1,8 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var Posting = require('../models/posting.js');
+var posting = require('../models/posting.js');
 
 var Postings = Thorax.Collection.extend({
-  model: Posting
+  model: posting
 });
 
 module.exports = Postings;
@@ -11,31 +11,47 @@ var Postings = require('./collections/postings.js');
 var FormView = require('./views/form-view.js');
 var PostingView = require('./views/posting-view.js');
 
-$(function () {  
-  var postings = new Postings({});
-  var postingView = new PostingView({collection:postings})
+$(function () {   
+  var app = {}
+  window.app = app;
   
-  
-  
-  var formView = new FormView({collection:postings});
+  var postings = new Postings();
+  var postingView = new PostingView({collection:postings});
+  var formView = new FormView({collection:postings});     
   
   Backbone.history.start();
+  
+//  $.get('data.json', function (data) {
+//    postings.add(data)    
+//  })
+  
+  app.postings = postings
+    
+
 });
 },{"./collections/postings.js":1,"./views/form-view.js":4,"./views/posting-view.js":5}],3:[function(require,module,exports){
 var Posting = Thorax.Model.extend({
-  defaults:{
-    'user':'Alex Honnold',
-    'user-img':'kitten.jpg',
-    'climb-gym':'circuit-ne',
-    'climb-eta':'30',
-    'climb-duration':'60',
-    'climb-details':'Sending V-10\'s like what',
-    'replies':[
-      {'user':'Chris Sharma','message':'I will see you there in 15','time':' Wed, 1:00 PM'},
-      {'user':'Sasha Digulian','message':'Sprained my ankle, no climbing for me','time':' Wed, 4:35 PM'}
+  defaults: {
+    'user': 'Alex Honnold',
+    'user-img': 'kitten.jpg',
+    'climb-gym': 'circuit-ne',
+    'climb-eta': '30',
+    'climb-duration': '60',
+    'climb-details': 'Sending V-10\'s like what',
+    'replies': [
+      {
+        'user': 'Chris Sharma',
+        'message': 'I will see you there in 15',
+        'time': ' Wed, 1:00 PM'
+      },
+      {
+        'user': 'Sasha Digulian',
+        'message': 'Sprained my ankle, no climbing for me',
+        'time': ' Wed, 4:35 PM'
+      }
     ]
   }
-  
+
 });
 
 module.exports = Posting;
@@ -44,43 +60,47 @@ var formViewTemplate = require('../../templates/form.handlebars');
 
 var FormView = Thorax.View.extend({
   template: formViewTemplate,
-  name:'form-view',  
-  el:'#sidebar',  
+  name: 'form-view',
+  el: '#sidebar',
   events: {
     'click #posting-submit-button': 'newPosting'
   },
-    
+
   initialize: function () {
-    this.render();    
+    this.render();
   },
-  
+
   newPosting: function () {
     var climbing = {
       gym: $("#sidebar").find('#climb-gym'),
       eta: $("#sidebar").find('#climb-eta'),
       length: $("#sidebar").find('#climb-length'),
       details: $("#sidebar").find('#climb-details'),
-    };    
+    };
 
     this.collection.add({
-      'user': 'Default User, please replace',
-      'user-img': 'test.jpg',
+      'user': 'Default User, please replace', //Update with log-in auth stuffs
+      'user-img': 'test.jpg', //update with log-in auth stuffs
       'climb-gym': climbing.gym.val(),
       'climb-eta': climbing.eta.val(),
       'climb-duration': climbing.length.val(),
       'climb-details': climbing.details.val(),
-      'replies': null      
+      'replies': false
     });
-    
-    console.log(climbing.gym.val(),climbing.eta.val(),climbing.length.val(),climbing.details.val());
-    
+
+    console.log(climbing.gym.val(), climbing.eta.val(), climbing.length.val(), climbing.details.val());
+
     climbing.gym.val('');
     climbing.eta.val('');
     climbing.length.val('');
     climbing.details.val('');    
-  }
 
+    $('.row-offcanvas').toggleClass('active');
+
+  },
   
+
+
 });
 
 module.exports = FormView;
@@ -89,20 +109,23 @@ var postingsViewTemplate = require('../../templates/posting.handlebars');
 
 var PostingView = Thorax.View.extend({
   template: postingsViewTemplate,
-  name: 'posting',
+  //name: 'posting',
   el: '#main',
-  
+
   initialize: function () {
     this.render();
   },
-  
+
   events: {
-    'click #posting-reply-button': function () {
+    'click #posting-reply-button': function () {      
+      var reply = $("#posting-reply");
+      reply.val() ? console.log(reply.val()) : null;
       
-      console.log($("#posting-reply").val());
+      //update this model with a new reply hash, grab var value, user name, Date(), and user portrait
+      
       $("#posting-reply").val('');
     }
-  }   
+  }
 
 });
 
@@ -114,7 +137,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<aside class=\"panel-default\">\r\n  <select class=\"form-control form-inline\" id=\"climb-gym\" name=\"climb-gym\">\r\n    <option value=\"null\">I'm Climbing at:</option>\r\n    <option value=\"circuit-ne\">The Circuit NE</option>\r\n    <option value=\"circuit-sw\">The Circuit SW</option>\r\n    <option value=\"prg\">Portland Rock Gym</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-eta\" name=\"climb-eta\">\r\n    <option value=\"null\">I'm going in:</option>\r\n    <option value=\"0\">Now!</option>\r\n    <option value=\"15\">15 minutes</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"45\">45 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-length\" name=\"climb-length\">\r\n    <option value=\"null\">I'm climbing for:</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n    <option value=\"90\">1.5 hours</option>\r\n    <option value=\"120\">2 hours</option>              \r\n  </select>\r\n  More Info for fun:\r\n  <textarea class=\"form-control\" rows=\"3\" type=\"text\" id=\"climb-details\" name=\"climb-details\" placeholder=\"Meet me over by the...\"></textarea>\r\n  \r\n  <button class=\"btn btn-danger\" id=\"posting-submit-button\">Go Climbing!</button>\r\n</aside>";
+  return "<aside class=\"panel-default\">\r\n  <select class=\"form-control form-inline\" id=\"climb-gym\" name=\"climb-gym\">\r\n    <option value=\"null\">I'm Climbing at:</option>\r\n    <option value=\"circuit-ne\">The Circuit NE</option>\r\n    <option value=\"circuit-sw\">The Circuit SW</option>\r\n    <option value=\"prg\">Portland Rock Gym</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-eta\" name=\"climb-eta\">\r\n    <option value=\"null\">I'm going in:</option>\r\n    <option value=\"0\">Now!</option>\r\n    <option value=\"15\">15 minutes</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"45\">45 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n  </select>\r\n  <select class=\"form-control form-inline\" id=\"climb-length\" name=\"climb-length\">\r\n    <option value=\"null\">I'm climbing for:</option>\r\n    <option value=\"30\">30 minutes</option>\r\n    <option value=\"60\">1 hour</option>\r\n    <option value=\"90\">1.5 hours</option>\r\n    <option value=\"120\">2 hours</option>\r\n  </select>\r\n  More Info for fun:\r\n  <textarea class=\"form-control\" rows=\"3\" type=\"text\" id=\"climb-details\" name=\"climb-details\" placeholder=\"Meet me over by the...\"></textarea>\r\n\r\n  <button class=\"btn btn-danger\" id=\"posting-submit-button\">Go Climbing!</button>\r\n</aside>";
   });
 },{"handlebars/runtime":14}],7:[function(require,module,exports){
 var templater = require("handlebars/runtime").default.template;module.exports = templater(function (Handlebars,depth0,helpers,partials,data) {
@@ -125,7 +148,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\r\n          <br/><p>";
+  buffer += "\r\n        <br/>\r\n        <p>";
   if (helper = helpers['climb-details']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0['climb-details']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -136,30 +159,30 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n    <div class=\"panel-body\">\r\n      ";
+  buffer += "\r\n  <div class=\"panel-body\">\r\n    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.replies), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n    </div>\r\n  ";
+  buffer += "\r\n  </div>\r\n  ";
   return buffer;
   }
 function program4(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n        <div class=\"list-group\">\r\n          <div href=\"#\" class=\"list-group-item\">    \r\n<!--            <div class=\"col-xs-2\"><img class=\"img-responsive\"  src=\"http://www.placekitten.com/40/40\" /></div>-->\r\n            <p class=\"list-group-item-text\">\r\n              <strong>"
+  buffer += "\r\n    <div class=\"list-group\">\r\n      <div href=\"#\" class=\"list-group-item\">\r\n        <!--            <div class=\"col-xs-2\"><img class=\"img-responsive\"  src=\"http://www.placekitten.com/40/40\" /></div>-->\r\n        <p class=\"list-group-item-text\">\r\n          <strong>"
     + escapeExpression(((stack1 = (depth0 && depth0.user)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " </strong>- "
+    + "</strong>- "
     + escapeExpression(((stack1 = (depth0 && depth0.message)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\r\n              <br><small>"
+    + "\r\n          <br>\r\n          <small>"
     + escapeExpression(((stack1 = (depth0 && depth0.time)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</small>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      ";
+    + "</small>\r\n        </p>\r\n      </div>\r\n    </div>\r\n    ";
   return buffer;
   }
 
-  buffer += "<div class=\"panel panel-default\">\r\n  \r\n  <div class=\"panel-heading\">\r\n    <div class=\"row\">\r\n      <div class=\"col-xs-2\">\r\n        <img src=\"http://www.placekitten.com/75/75\" />\r\n      </div>\r\n      <div class=\"col-xs-10 panel-emphasis\">\r\n        <strong>";
+  buffer += "<div class=\"panel panel-default\">\r\n\r\n  <div class=\"panel-heading\">\r\n    <div class=\"row\">\r\n      <div class=\"col-xs-2\">\r\n        <img src=\"http://www.placekitten.com/75/75\" />\r\n      </div>\r\n      <div class=\"col-xs-10 panel-emphasis\">\r\n        <strong>";
   if (helper = helpers.user) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.user); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " </strong><em>@ ";
+    + "</strong>\r\n        <em>@ ";
   if (helper = helpers['climb-gym']) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0['climb-gym']); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -177,7 +200,7 @@ function program4(depth0,data) {
   buffer += "\r\n      </div>\r\n    </div>\r\n  </div>\r\n  ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.replies), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\r\n  <div class=\"panel-footer\">\r\n    <textarea class=\"form-control\" rows=\"1\" type=\"text\" name=\"posting-reply\" id=\"posting-reply\" placeholder=\"Maybe we should meet up...\"></textarea>\r\n    <button class=\"btn btn-default\" id=\"posting-reply-button\" type=\"submit\">Reply</button>\r\n  </div>\r\n  \r\n</div>\r\n";
+  buffer += "\r\n  <div class=\"panel-footer\">\r\n    <textarea class=\"form-control\" rows=\"1\" type=\"text\" name=\"posting-reply\" id=\"posting-reply\" placeholder=\"Maybe we should meet up...\"></textarea>\r\n    <button class=\"btn btn-default\" id=\"posting-reply-button\" type=\"submit\">Reply</button>\r\n  </div>\r\n\r\n</div>\r\n";
   return buffer;
   });
 },{"handlebars/runtime":14}],8:[function(require,module,exports){

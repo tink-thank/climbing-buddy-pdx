@@ -1,3 +1,5 @@
 node_modules/**
 appCopy/**
-/public_html/css/
+.env
+procfile
+

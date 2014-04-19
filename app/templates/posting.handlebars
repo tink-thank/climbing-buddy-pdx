@@ -7,10 +7,10 @@
       </div>
       <div class="col-xs-10 panel-emphasis">
         <strong>{{user}}</strong>
-        <em>@ {{climb-gym}} in {{climb-eta}} for {{climb-duration}} minutes</em>
-        {{#if climb-details}}
+        <em>@ {{climbGym}} in {{climbEta}} for {{climbDuration}} minutes</em>
+        {{#if climbDetails}}
         <br/>
-        <p>{{climb-details}}</p>
+        <p>{{climbDetails}}</p>
         {{/if}}
       </div>
     </div>
@@ -22,7 +22,7 @@
       <div href="#" class="list-group-item">
         <!--            <div class="col-xs-2"><img class="img-responsive"  src="http://www.placekitten.com/40/40" /></div>-->
         <p class="list-group-item-text">
-          <strong>{{this.user}}</strong>- {{this.message}}
+          <strong>{{this.user}}</strong> - {{this.message}}
           <br>
           <small>{{this.time}}</small>
         </p>

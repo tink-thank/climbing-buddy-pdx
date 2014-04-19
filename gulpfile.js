@@ -27,7 +27,8 @@ var paths = {
 gulp.task ('scripts', function () {
   gulp.src('app/js/main.js')
     .pipe(browserify ({
-      transform: [browserifyHbs]
+      transform: [browserifyHbs],
+      debug : !gulp.env.production
     }))
     .pipe(gulp.dest('public_html/js'));
 

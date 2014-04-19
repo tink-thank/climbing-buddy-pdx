@@ -13,29 +13,29 @@ var FormView = Thorax.View.extend({
   },
 
   newPosting: function () {
-    var climbing = {
-      gym: $("#sidebar").find('#climb-gym'),
-      eta: $("#sidebar").find('#climb-eta'),
-      length: $("#sidebar").find('#climb-length'),
-      details: $("#sidebar").find('#climb-details'),
+    var clmb = {
+      gym: $('#climb-gym'),
+      eta: $('#climb-eta'),
+      duration: $('#climb-duration'),
+      details: $('#climb-details'),
     };
 
     this.collection.add({
-      'user': 'Default User, please replace', //Update with log-in auth stuffs
-      'user-img': 'test.jpg', //update with log-in auth stuffs
-      'climb-gym': climbing.gym.val(),
-      'climb-eta': climbing.eta.val(),
-      'climb-duration': climbing.length.val(),
-      'climb-details': climbing.details.val(),
-      'replies': false
+      user: 'Default User, please replace', //Update with log-in auth stuffs
+      userImg: 'test.jpg', //update with log-in auth stuffs
+      climbGym: clmb.gym.val(),
+      climbEta: clmb.eta.val(),
+      climbDuration: clmb.duration.val(),
+      climbDetails: clmb.details.val(),
+      replies: false
     });
 
-    console.log(climbing.gym.val(), climbing.eta.val(), climbing.length.val(), climbing.details.val());
+    console.log(clmb.gym.val(), clmb.eta.val(), clmb.duration.val(), clmb.details.val());
 
-    climbing.gym.val('');
-    climbing.eta.val('');
-    climbing.length.val('');
-    climbing.details.val('');    
+    clmb.gym.val('');
+    clmb.eta.val('');
+    clmb.duration.val('');
+    clmb.details.val('');    
 
     $('.row-offcanvas').toggleClass('active');
 

@@ -12,9 +12,23 @@ var PostingView = Thorax.View.extend({
   events: {
     'click #posting-reply-button': function () {      
       var reply = $("#posting-reply");
-      reply.val() ? console.log(reply.val()) : null;
+      //reply.val() ? console.log(reply.val()) : null;
       
-      //update this model with a new reply hash, grab var value, user name, Date(), and user portrait
+      // this.model.push({replies:{
+      //   user: 'Test User Please Ignore',
+      //   message: reply,
+      //   time: new Date().toDateString(),
+      // }});
+
+      // this.model.set({ 
+      //   'replies' : this.model.get('replies').concat(reply.val())
+      // });
+
+      this.model.attributes.replies.push({
+        user: 'Test User Please Ignore',
+        message: reply.val(),
+        time: new Date().toDateString(),
+      });
       
       $("#posting-reply").val('');
     }

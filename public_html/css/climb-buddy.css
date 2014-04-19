@@ -43,3 +43,15 @@ footer {
 
 .panel-emphasis {
   font-size: 1.2em; }
+
+.login-page {
+  background: url(../img/rock-climb-couple.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+.panel-login {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(0, 0, 0, 0.21);
+  border-radius: 0; }

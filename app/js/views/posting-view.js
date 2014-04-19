@@ -2,7 +2,7 @@ var postingsViewTemplate = require('../../templates/posting.handlebars');
 
 var PostingView = Thorax.View.extend({
   template: postingsViewTemplate,
-  //name: 'posting',
+  name: 'Posting View',
   el: '#main',
 
   initialize: function () {
@@ -12,25 +12,18 @@ var PostingView = Thorax.View.extend({
   events: {
     'click #posting-reply-button': function () {      
       var reply = $("#posting-reply");
-      //reply.val() ? console.log(reply.val()) : null;
-      
-      // this.model.push({replies:{
-      //   user: 'Test User Please Ignore',
-      //   message: reply,
-      //   time: new Date().toDateString(),
-      // }});
 
-      // this.model.set({ 
-      //   'replies' : this.model.get('replies').concat(reply.val())
-      // });
+      if (reply.val()) {
+        
+        //This needs fixing. Obviously.
+        this.model.attributes.replies.push({
+          user: 'Test User Please Ignore',
+          message: reply.val(),
+          time: new Date().toDateString(),
+        });
 
-      this.model.attributes.replies.push({
-        user: 'Test User Please Ignore',
-        message: reply.val(),
-        time: new Date().toDateString(),
-      });
-      
-      $("#posting-reply").val('');
+        reply.val('');
+      }
     }
   }
 

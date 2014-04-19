@@ -2,8 +2,9 @@ var formViewTemplate = require('../../templates/form.handlebars');
 
 var FormView = Thorax.View.extend({
   template: formViewTemplate,
-  name: 'form-view',
+  name: 'Form View',
   el: '#sidebar',
+  
   events: {
     'click #posting-submit-button': 'newPosting'
   },

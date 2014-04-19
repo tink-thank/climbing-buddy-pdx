@@ -1,25 +1,25 @@
 {
-  "user":"Alex Honnold",
-  "user-img":"kitten.jpg",
-  "climb-gym":"circuit-ne",
-  "climb-eta":"30",
-  "climb-duration":"60",
-  "climb-details":"Sending V-10\'s like what",
+  "user":"Cris Kelly",
+  "userImg":"kitten.jpg",
+  "climbGym":"circuit-se",
+  "climbEta":"15",
+  "climbDuration":"90",
+  "climbDetails":"Coding at the climbing gym!",
   "replies":[
-    {"user":"Chris Sharma","message":"I will see you there in 15","time":" Wed, 1:00 PM"},
-    {"user":"Sasha Digulian","message":"Sprained my ankle, no climbing for me","time":" Wed, 4:35 PM"}
+    {"user":"Dave Manning","message":"Nope","time":" Fri, 9:00 PM"},
+    {"user":"Al Zimmerman","message":"Improv comedy show!","time":" Wed, 4:35 PM"}
   ]
 },
 
 {
-  "user":"Cris Kelly",
-  "user-img":"kitten.jpg",
-  "climb-gym":"circuit-se",
-  "climb-eta":"15",
-  "climb-duration":"90",
-  "climb-details":"Coding at the climbing gym!",
+  "user":"Alex Honnold JSON",
+  "userImg":"kitten.jpg",
+  "climbGym":"planite-granite",
+  "climbEta":"30",
+  "climbDuration":"60",
+  "climbDetails":"Sending V-10s like what",
   "replies":[
-    {"user":"Dave Manning","message":"Nope","time":" Fri, 9:00 PM"},
-    {"user":"Al Zimmerman","message":"Improv comedy show!","time":" Wed, 4:35 PM"}
+    {"user":"Chris Sharma","message":"I will see you there in 15","time":" Wed, 1:00 PM"},
+    {"user":"Sasha Digulian","message":"Sprained my ankle, no climbing for me","time":" Wed, 4:35 PM"}
   ]
 }

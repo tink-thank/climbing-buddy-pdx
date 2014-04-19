@@ -1,8 +1,10 @@
 var Posting = Thorax.Model.extend({
+  name:'Posting Model',
+  
   defaults: {
     user: 'Alex Honnold',
     userImg: 'kitten.jpg',
-    climbGym: 'circuit-ne',
+    climbGym: 'Circuit NE',
     climbEta: '30',
     climbDuration: '60',
     climbDetails: 'Sending V-10\'s like what',

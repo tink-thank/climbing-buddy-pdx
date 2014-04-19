@@ -21,14 +21,14 @@ var paths = {
   scss: 'app/scss/*.scss',
   css: 'public_html/css'
 }
-
 //Compiles all the Thorax/Backbone logic into a single file
 //via Browserify for our browser. Hence the name. Very clever.
 //Also pipes in Handlebar templates.
 gulp.task ('scripts', function () {
   gulp.src('app/js/main.js')
     .pipe(browserify ({
-      transform: [browserifyHbs]
+      transform: [browserifyHbs],
+      debug : !gulp.env.production
     }))
     .pipe(gulp.dest('public_html/js'));
 

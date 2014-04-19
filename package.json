@@ -22,7 +22,8 @@
     "gulp-define-module": "~0.1.0",
     "browserify-handlebars": "~0.2.0",
     "gulp-nodemon": "~1.0.2",
-    "colors": "~0.6.2"
+    "colors": "~0.6.2",
+    "backbone.localstorage": "~1.1.7"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

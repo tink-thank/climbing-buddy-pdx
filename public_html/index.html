@@ -8,22 +8,24 @@
     <meta name="author" content="Team Tink Thank: Tanks A Lot!">
     <link rel="shortcut icon" href="img/favicon.ico">
     <title>Climbing Buddy PDX</title>
-      
+
 
     <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">-->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    
+
     <!-- for development only-->
-    <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
-    
+    <link href="css/bootstrap.css" rel="stylesheet">
+
     <!-- custom stylesheet -->
-    <link type="text/css" href="css/climb-buddy.css" rel="stylesheet">
-    <!-- CDN loaded scripts -->  
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <link href="css/climb-buddy.css" rel="stylesheet">
+    <script src="js/lib/thorax-combo.js"></script>
+    
+    <!-- CDN loaded scripts -->
+   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/thorax/2.2.1/thorax-combined.min.js"></script> -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/thorax/2.2.1/thorax-combined.js"></script>
+
     <!-- application logic browserified! -->
-    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/main.js"></script>
 
 
   </head>
@@ -49,39 +51,16 @@
     </div>
 
     <div class="container">
-      <div class="row row-offcanvas row-offcanvas-left">        
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">          
-          <aside class="panel-default">
+      <div class="row row-offcanvas row-offcanvas-left">
+        
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <!--form here, yo-->
+        </div>
 
-              <select class="form-control form-inline" name="climb-gym">
-                <option value="null">I'm Climbing at:</option>
-                <option value="circuit-ne">The Circuit NE</option>
-                <option value="circuit-sw">The Circuit SW</option>
-                <option value="prg">Portland Rock Gym</option>
-              </select>
-              <select class="form-control form-inline" name="climb-eta">
-                <option value="null">I'm going in:</option>
-                <option value="0">Now!</option>
-                <option value="15">15 minutes</option>
-                <option value="30">30 minutes</option>
-                <option value="45">45 minutes</option>
-                <option value="60">1 hour</option>
-              </select>
-              <select class="form-control form-inline" name="climb-length">
-                <option value="null">I'm climbing for:</option>
-                <option value="30">30 minutes</option>
-                <option value="60">1 hour</option>
-                <option value="90">1.5 hours</option>
-                <option value="120">2 hours</option>              
-              </select>
-              More Info for fun:
-              <textarea class="form-control" rows="3" type="text" name="climb-details" placeholder="Meet me over by the..."></textarea>
-              <button class="btn btn-default" id="submit-button" type="submit">Go Climbing!</button>
-
-          </aside>
-        </div>        
-
-        <section class="col-xs-12 col-sm-9" id="main">        
+        <section class="col-xs-12 col-sm-9" id="main">
+          <div>
+            <p>Looks like nobody is climbing right now..... maybe you should go climbing!</p>
+          </div>
         </section>
 
       </div>
@@ -91,12 +70,8 @@
         $('[data-toggle=offcanvas]').click(function () {
           $('.row-offcanvas').toggleClass('active');
         });
-        
-        $('#submit-button').click(function () {
-          $('.row-offcanvas').toggleClass('active');
-        })
       });
     </script>
-    
+
   </body>
 </html>

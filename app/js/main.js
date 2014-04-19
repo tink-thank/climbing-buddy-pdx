@@ -1,15 +1,21 @@
-var Posting = require('./models/posting.js');
-//var Postings = require('./collections/postings.js');
-var PostingView = require('./views/posting-view.js');
-var postingsViewTemplate = require('./templates/posting.handlebars');
+var Postings = require('./collections/postings.js');
+var FormView = require('./views/form-view.js');
+var PostColView = require('./views/posting-collection-view.js');
 
-$(function () {
-  var postingModel = new Posting();
-  var postingView = new PostingView({model: postingModel, template: postingsViewTemplate});
-  //var postingsCollection = new Postings();
-  
-  //var postingsView = new PostingsView({collection: postingsCollection, template: postingsViewTemplate});
+var dataJson = require('../data.json');
 
+$(function () {   
+  var app = {}
+  window.app = app;    
+
+  var postings = new Postings();
+  postings.reset(dataJson);
+
+  var formView = new FormView({collection:postings});
+  var appView = new PostColView({collection:postings});
   
+  Backbone.history.start();
   
-})
+  app.postings = postings
+
+});

@@ -64,7 +64,7 @@ app.use(function(req, res, next) {
 // ===========================
 
 // Homepage
-app.get('/', isLoggedIn, function(req, res){
+app.get('/', isLoggedIn, function (req, res){
     res.sendfile('./public_html/index.html');
 });
 

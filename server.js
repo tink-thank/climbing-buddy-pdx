@@ -118,22 +118,16 @@ authUserGit = function (profile) {
   // use the provider and the user (incase we support other providers down the road)
   var key = profile.provider + '-' + profile.username;
 
-    db.search('testUsers', key)
+    db.get('testUsers', key)
       .then(function (result){
         //in this case the user already exists in the database we just need to return them
-        if (result.body.results[0] !== undefined) {
-          db.get('testUsers', key)
-            .then(function (result){
+            console.log("FOUND CEREAL!!" + result.body)
             deferred.resolve([null, result.body]);
-            })
-            .fail(function (err){
-              console.log(err.body);
-              deferred.resolve([err, false]);
-            })
-        } 
-        //in this case the user is not already in the database and needs to be added before it can be returned
-        else{ 
-        // the user data we want to store. this is mostly to clean up any extra data we don't need
+      })
+      //in this case the user is not already in the database and needs to be added before it can be returned
+      .fail(function (err) {
+        console.log("NO CEREAL FOUUUUUUNNNND!");
+          // the user data we want to store. this is mostly to clean up any extra data we don't need
           var user = {
             cereal:      key, 
             provider:    profile.provider,
@@ -145,6 +139,7 @@ authUserGit = function (profile) {
             avatar:      profile._json.avatar_url,
             githubData:  profile._json
           };
+          console.log("USER NOW: " + user);
           // put the user into our DB if it's not currently there
           db.put('testUsers', key, user)
           .then(function () {
@@ -152,13 +147,9 @@ authUserGit = function (profile) {
             deferred.resolve([null, user]);
           })
           .fail(function (err) {
-            console.log(err.body);
+            console.log("PUT FAIL:" + err.body);
             deferred.resolve([err, user]);
           });
-        }
-      })
-      .fail(function (err) {
-        console.log(err.body);
       });
 
   return deferred.promise;

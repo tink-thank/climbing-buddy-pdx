@@ -110,16 +110,19 @@ app.get('/posts', function(req, res){
   db.search('testPosts', 'post*')
   .then(function (result) {
     var postsReturned = result.body.results;
+    postsReturned.forEach(function (item){
+      item.value.timeStamp = parseInt(item.value.timeStamp, 10);
+    });
     postsReturned.sort(function(a, b) {
       if (a.value.timeStamp > b.value.timeStamp) return -1;
       if (a.value.timeStamp < b.value.timeStamp) return 1;
       return 0;
     });
     postsReturned.forEach(function(item){
-      item.value.timeStamp = new Date(parseInt(item.value.timeStamp, 10));
+      item.value.timeStamp = new Date(timeStamp);
       postsList.shift(item.value);
     })
-    console.log(postsReturned);
+    console.log(postsList);
   })
   .then(function () {
     res.json(200, postsList);

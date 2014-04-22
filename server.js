@@ -103,6 +103,33 @@ app.get('/logout', function(req, res){
   });
 })
 
+// get posts from database
+app.get('/posts', function(req, res){
+  var postsList = [];
+  
+  db.search('testPosts', 'post*')
+  .then(function (result) {
+    var postsReturned = result.body.results;
+    postsReturned.sort(function(a, b) {
+      if (a.value.timeStamp > b.value.timeStamp) return -1;
+      if (a.value.timeStamp < b.value.timeStamp) return 1;
+      return 0;
+    });
+    postsReturned.forEach(function(item){
+      item.value.timeStamp = new Date(parseInt(item.value.timeStamp, 10));
+      postsList.shift(item.value);
+    })
+    console.log(postsReturned);
+  })
+  .then(function () {
+    res.json(200, postsList);
+  })
+  .fail(function (err){
+    console.log(err)
+  });
+  
+});
+
 app.listen(port);
 console.log('The magic happens on port ' + port);
 

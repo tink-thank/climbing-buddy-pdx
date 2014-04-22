@@ -120,8 +120,9 @@ app.get('/posts', function(req, res){
       return 0;
     });
     postsReturned.forEach(function(item){
-      item.value.timeStamp = new Date(timeStamp);
-      postsList.shift(item.value);
+      item.value.timeStamp = new Date(item.value.timeStamp);
+      console.log(item.value);
+      postsList.push(item.value);
     })
     console.log(postsList);
   })
@@ -132,6 +133,21 @@ app.get('/posts', function(req, res){
     console.log(err)
   });
   
+});
+
+//POST posts to database
+// NEED TO ADD FILTER SO NO WIERDOS RUIN OUR SITE!!!
+app.post('/post/:postId', function (req, res){
+  console.log(req.body);
+  console.log(req.params.postId); //need to fix so only getting back the part after the colon (right now it is included)
+  db.put('testPosts', req.params.postId, req.body)
+  .then(function (){
+    console.log("POST HAS BEEN POSTed IN DATABASE");
+    res.end();
+  })
+  .fail(function(err){
+    console.log(err);
+  });
 });
 
 app.listen(port);

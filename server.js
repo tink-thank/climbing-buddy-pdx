@@ -120,8 +120,9 @@ app.get('/posts', function(req, res){
       return 0;
     });
     postsReturned.forEach(function(item){
-      item.value.timeStamp = new Date(timeStamp);
-      postsList.shift(item.value);
+      item.value.timeStamp = new Date(item.value.timeStamp);
+      console.log(item.value);
+      postsList.push(item.value);
     })
     console.log(postsList);
   })

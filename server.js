@@ -105,6 +105,7 @@ app.get('/logout', function(req, res){
 
 // get posts from database
 app.get('/posts', function(req, res){
+  console.log("GETTING /POSTS");
   var postsList = [];
   
   db.search('testPosts', 'post*')

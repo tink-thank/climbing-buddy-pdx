@@ -135,6 +135,21 @@ app.get('/posts', function(req, res){
   
 });
 
+//POST posts to database
+// NEED TO ADD FILTER SO NO WIERDOS RUIN OUR SITE!!!
+app.post('/post/:postId', function (req, res){
+  console.log(req.body);
+  console.log(req.params.postId); //need to fix so only getting back the part after the colon (right now it is included)
+  db.put('testPosts', req.params.postId, req.body)
+  .then(function (){
+    console.log("POST HAS BEEN POSTed IN DATABASE");
+    res.end();
+  })
+  .fail(function(err){
+    console.log(err);
+  });
+});
+
 app.listen(port);
 console.log('The magic happens on port ' + port);
 

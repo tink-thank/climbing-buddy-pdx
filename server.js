@@ -12,12 +12,25 @@ var port     = process.env.PORT || 5000;
 // ===========================
 // PASSPORT
 // ===========================
+
 passport.serializeUser(function(user, done) {
-    done(null, user);
+    console.log("will serialize: " + user.cereal)
+    done(null, user.cereal);
 });
-passport.deserializeUser(function(user, done) {
-    done(null, user)
+
+passport.deserializeUser(function(cereal, done) {
+  findByKey(cereal)
+  .then(function (result){
+    done(result[0], result[1])
+  });
 });
+
+// passport.serializeUser(function(user, done) {
+//     done(null, user);
+// });
+// passport.deserializeUser(function(user, done) {
+//     done(null, user)
+// });
 passport.use(new GitHubStrategy(
     {
         clientID: process.env.GITHUB_CLIENT_ID,
@@ -90,6 +103,37 @@ app.get('/logout', function(req, res){
   });
 })
 
+// get posts from database
+app.get('/posts', function(req, res){
+  console.log("GETTING /POSTS");
+  var postsList = [];
+  
+  db.search('testPosts', 'post*')
+  .then(function (result) {
+    var postsReturned = result.body.results;
+    postsReturned.forEach(function (item){
+      item.value.timeStamp = parseInt(item.value.timeStamp, 10);
+    });
+    postsReturned.sort(function(a, b) {
+      if (a.value.timeStamp > b.value.timeStamp) return -1;
+      if (a.value.timeStamp < b.value.timeStamp) return 1;
+      return 0;
+    });
+    postsReturned.forEach(function(item){
+      item.value.timeStamp = new Date(timeStamp);
+      postsList.shift(item.value);
+    })
+    console.log(postsList);
+  })
+  .then(function () {
+    res.json(200, postsList);
+  })
+  .fail(function (err){
+    console.log(err)
+  });
+  
+});
+
 app.listen(port);
 console.log('The magic happens on port ' + port);
 
@@ -153,4 +197,35 @@ authUserGit = function (profile) {
       });
 
   return deferred.promise;
+}
+
+findByKey = function (key){
+  var deferredKey = Q.defer();
+
+    db.search('testUsers', key)
+      .then(function (result){
+        //in this case deserialized user key did match the one in database
+        if (result.body.results[0] !== undefined) {
+          db.get('testUsers', key)
+            .then(function (result){
+            console.log("from the get deserialize:")
+            console.log(result.body);
+            deferredKey.resolve([null, result.body]);
+            })
+            .fail(function (err){
+              console.log(err.body);
+              deferredKey.resolve([err, false]);
+            })
+        } 
+        //in this case the deserialized user key did NOT match the one in the database
+        else{
+          var err = "could not deserialize this user, there was no match with database";
+          deferredKey.resolve([err, false]);
+        }
+      })
+      .fail(function (err) {
+        console.log(err.body);
+      });
+
+  return deferredKey.promise;
 }

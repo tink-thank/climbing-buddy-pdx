@@ -4,7 +4,7 @@ var Posting = Thorax.Model.extend({
   defaults: {
     postingId: 10000,
     title: 'default post, please ignore',
-    userName: 'Alex Honnold',
+    userName: 'Alex Honnold Default',
     userImg: 'kitten.jpg',
     climbGym: 'Circuit NE',
     climbEta: '30',

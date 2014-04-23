@@ -1,5 +1,5 @@
 {
-  "user":"Cris Kelly",
+  "userName":"Cris Kelly JSON",
   "userImg":"kitten.jpg",
   "climbGym":"circuit-se",
   "climbEta":"15",
@@ -12,7 +12,7 @@
 },
 
 {
-  "user":"Alex Honnold JSON",
+  "userName":"Alex Honnold JSON",
   "userImg":"kitten.jpg",
   "climbGym":"planite-granite",
   "climbEta":"30",

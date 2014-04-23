@@ -19,7 +19,7 @@ var FormView = Thorax.View.extend({
   },
 
   newPosting: function () {
-    var postingId = postingIdMaker();
+    var postingId = this.postingIdMaker();
     
     var clmb = {
       gym: $('#climb-gym'),

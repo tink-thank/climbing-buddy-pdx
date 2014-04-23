@@ -16,6 +16,6 @@ $(function () {
   
   Backbone.history.start();
   
-  app.postings = postings
+  app.postings = postings;
 
 });

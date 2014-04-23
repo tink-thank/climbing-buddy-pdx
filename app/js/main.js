@@ -7,6 +7,7 @@ $(function () {
   
   $.getJSON('/posts', function (jsonData) {
     data = jsonData;
+    console.log(data);
   })
   
   var app = {}

@@ -38,7 +38,8 @@ var FormView = Thorax.View.extend({
       climbEta: clmb.eta.val(),
       climbDuration: clmb.duration.val(),
       climbDetails: clmb.details.val(),
-      replies: false
+      replies: false,
+      idAttribute: postingId,
     });
 
     clmb.gym.val('');

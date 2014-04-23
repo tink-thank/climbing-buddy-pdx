@@ -9,7 +9,7 @@ var PostingView = Thorax.View.extend({
   
   initialize: function () {
     this.render();
-    console.log(this.model.attributes.postingId);
+    console.log(this.model.attributes);
     this.model.save();
   },
   

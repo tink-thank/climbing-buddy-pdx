@@ -94,6 +94,11 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
     res.redirect('/');
 });
 
+// route to send user information to the front end
+app.get('/user', function (req, res){
+  res.json(200, req.user);
+})
+
 //logout
 app.get('/logout', function(req, res){
   req.session.destroy(function () {
@@ -150,6 +155,7 @@ app.post('/post/:postingId', function (req, res){
   });
 });
 
+// POST method to update a post in the database when a repy is made to it
 app.post('/post/:postingId/reply', function (req, res){
   console.log(req.body);
   db.put('testPosts', 'post' + req.params.postingId, req.body)

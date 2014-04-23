@@ -14,7 +14,7 @@ $(function () {
   window.app = app;    
 
   var postings = new Postings();
-  postings.reset(data);
+  postings.fetch();
 
   var formView = new FormView({collection:postings});
   var appView = new PostColView({collection:postings});

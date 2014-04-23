@@ -97,6 +97,7 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
 app.get('/user', function (req, res){
   console.log("TESTING USER PATH GET: ");
   console.log(req.user);
+  res.json(200, req.user);
 })
 
 //logout

@@ -10,10 +10,13 @@ $(function () {
 //    console.log(data)
 //  })
 //  
-  
-  Backbone.sync = function (method, model) {
-    console.log(method, model);
-  };
+
+  var ClimbingRouter = Backbone.Router.extend({});
+
+  var myClimbingRouter = new ClimbingRouter;
+
+  Backbone.history.start();
+
   
   var app = {}
   window.app = app;    
@@ -27,7 +30,7 @@ $(function () {
   
 
   
-  Backbone.history.start();
+  
   
   app.postings = postings;
 

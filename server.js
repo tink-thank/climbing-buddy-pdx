@@ -142,7 +142,7 @@ app.get('/posts', function(req, res){
 
 //POST posts to database
 // NEED TO ADD FILTER SO NO WIERDOS RUIN OUR SITE!!!
-app.post('/post/:postingId', function (req, res){
+app.post('/posts/:postingId', function (req, res){
   console.log(req.body);
   console.log(req.params.postingId); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.params.postingId, req.body)
@@ -156,7 +156,7 @@ app.post('/post/:postingId', function (req, res){
 });
 
 // POST method to update a post in the database when a repy is made to it
-app.post('/post/:postingId/reply', function (req, res){
+app.post('/posts/:postingId/reply', function (req, res){
   console.log(req.body);
   db.put('testPosts', 'post' + req.params.postingId, req.body)
   .then(function (){

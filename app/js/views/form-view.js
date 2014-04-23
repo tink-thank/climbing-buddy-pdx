@@ -4,6 +4,7 @@ var FormView = Thorax.View.extend({
   template: formViewTemplate,
   name: 'Form View',
   el: '#sidebar',
+  count: 10001,
   
   events: {
     'click #posting-submit-button': 'newPosting'
@@ -12,8 +13,14 @@ var FormView = Thorax.View.extend({
   initialize: function () {
     this.render();
   },
+  
+  postingIdMaker: function () {
+    return Math.floor( Math.random() * 1000000000 );
+  },
 
   newPosting: function () {
+    var postingId = postingIdMaker();
+    
     var clmb = {
       gym: $('#climb-gym'),
       eta: $('#climb-eta'),
@@ -22,7 +29,10 @@ var FormView = Thorax.View.extend({
     };
 
     this.collection.add({
-      user: 'Default User, please replace', //Update with log-in auth stuffs
+      postingId: postingId,
+      title: 'posting-' + postingId,
+      timeStamp: Date.now(),
+      userName: 'Default User, please replace', //Update with log-in auth stuffs
       userImg: 'test.jpg', //update with log-in auth stuffs
       climbGym: clmb.gym.val(),
       climbEta: clmb.eta.val(),
@@ -30,8 +40,6 @@ var FormView = Thorax.View.extend({
       climbDetails: clmb.details.val(),
       replies: false
     });
-
-    console.log(clmb.gym.val(), clmb.eta.val(), clmb.duration.val(), clmb.details.val());
 
     clmb.gym.val('');
     clmb.eta.val('');

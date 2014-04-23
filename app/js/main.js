@@ -7,14 +7,14 @@ $(function () {
   
   $.getJSON('/posts', function (jsonData) {
     data = jsonData;
-    console.log(data);
+    console.log(data)
   })
   
   var app = {}
   window.app = app;    
 
   var postings = new Postings();
-  postings.fetch();
+  postings.reset(data);
 
   var formView = new FormView({collection:postings});
   var appView = new PostColView({collection:postings});

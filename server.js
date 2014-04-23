@@ -140,12 +140,10 @@ app.get('/posts', function(req, res){
   
 });
 
-//POST posts to database
-// NEED TO ADD FILTER SO NO WIERDOS RUIN OUR SITE!!!
-app.post('/posts/:id', function (req, res){
+app.post('/posts', function (req, res) {
   console.log(req.body);
-  console.log(req.params.id); //need to fix so only getting back the part after the colon (right now it is included)
-  db.put('testPosts', 'post' + req.params.id, req.body)
+  console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
+  db.put('testPosts', 'post' + req.body.id, req.body)
   .then(function (){
     console.log("POST HAS BEEN POSTed IN DATABASE");
     res.end();
@@ -155,18 +153,46 @@ app.post('/posts/:id', function (req, res){
   });
 });
 
-// POST method to update a post in the database when a repy is made to it
-app.post('/posts/:id/reply', function (req, res){
+app.put('/posts', function (req, res) {
   console.log(req.body);
-  db.put('testPosts', 'post' + req.params.id, req.body)
+  console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
+  db.put('testPosts', 'post' + req.body.id, req.body)
   .then(function (){
-    console.log("POST HAS BEEN POSTed IN DATABASE WITH NEW REPLY");
+    console.log("POST HAS BEEN UPDATED IN DATABASE");
     res.end();
   })
   .fail(function(err){
     console.log(err);
   });
 })
+
+// //POST posts to database
+// // NEED TO ADD FILTER SO NO WIERDOS RUIN OUR SITE!!!
+// app.post('/posts/:id', function (req, res){
+//   console.log(req.body);
+//   console.log(req.params.id); //need to fix so only getting back the part after the colon (right now it is included)
+//   db.put('testPosts', 'post' + req.params.id, req.body)
+//   .then(function (){
+//     console.log("POST HAS BEEN POSTed IN DATABASE");
+//     res.end();
+//   })
+//   .fail(function(err){
+//     console.log(err);
+//   });
+// });
+
+// // POST method to update a post in the database when a repy is made to it
+// app.post('/posts/:id/reply', function (req, res){
+//   console.log(req.body);
+//   db.put('testPosts', 'post' + req.params.id, req.body)
+//   .then(function (){
+//     console.log("POST HAS BEEN POSTed IN DATABASE WITH NEW REPLY");
+//     res.end();
+//   })
+//   .fail(function(err){
+//     console.log(err);
+//   });
+// })
 
 app.listen(port);
 console.log('The magic happens on port ' + port);

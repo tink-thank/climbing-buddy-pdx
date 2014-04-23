@@ -1,0 +1,6 @@
+.topbar {
+  display: inline-block;
+  margin-bottom: 50px; }
+  .topbar img {
+    padding: 2px 0 2px 0;
+    max-height: 50px; }

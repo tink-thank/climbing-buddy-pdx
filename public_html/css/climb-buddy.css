@@ -1,12 +1,6 @@
 html, body {
   overflow-x: hidden; }
 
-body {
-  padding-top: 70px; }
-
-footer {
-  padding: 30px 0; }
-
 @media screen and (max-width: 767px) {
   .row-offcanvas {
     position: relative;
@@ -29,6 +23,13 @@ footer {
     position: absolute;
     top: 0;
     width: 50%; } }
+
+.topbar {
+  display: inline-block;
+  margin-bottom: 50px; }
+  .topbar img {
+    padding: 2px 0 2px 0;
+    max-height: 50px; }
 
 #main {
   min-height: 310px; }

@@ -150,6 +150,19 @@ app.post('/post/:postId', function (req, res){
   });
 });
 
+app.post('/post/:postId/reply', function (req, res){
+  console.log(req.body);
+  console.log(req.params.replies);
+  db.put('testPosts', 'post' + req.params.postId, req.body)
+  .then(function (){
+    console.log("POST HAS BEEN POSTed IN DATABASE WITH NEW REPLY");
+    res.end();
+  })
+  .fail(function(err){
+    console.log(err);
+  });
+})
+
 app.listen(port);
 console.log('The magic happens on port ' + port);
 

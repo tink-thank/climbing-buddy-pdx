@@ -3,6 +3,10 @@ var Posting = Thorax.Model.extend({
   
   urlRoot: '/posts',
   
+  initialize: function () {
+    this.save();
+  },
+  
   defaults: {
     postingId: 10000,
     title: 'default post, please ignore',

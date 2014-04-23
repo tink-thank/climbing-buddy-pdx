@@ -11,15 +11,21 @@ $(function () {
 //  })
 //  
   
+  Backbone.sync = function (method, model) {
+    console.log(method, model);
+  };
+  
   var app = {}
   window.app = app;    
 
   var postings = new Postings();
+  postings.fetch();
+  //postings.fetch({reset: true});
 
   var formView = new FormView({collection:postings});
   var appView = new PostColView({collection:postings});
   
-  postings.fetch();
+
   
   Backbone.history.start();
   

@@ -1,15 +1,19 @@
 var Postings = require('./collections/postings.js');
 var FormView = require('./views/form-view.js');
 var PostColView = require('./views/posting-collection-view.js');
+var data = '';
 
-var dataJson = require('../data.json');
-
-$(function () {   
+$(function () {
+  
+  $.getJSON('/posts', function (jsonData) {
+    data = jsonData;
+  })
+  
   var app = {}
   window.app = app;    
 
   var postings = new Postings();
-  postings.reset();
+  postings.reset(data);
 
   var formView = new FormView({collection:postings});
   var appView = new PostColView({collection:postings});

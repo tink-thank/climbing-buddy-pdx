@@ -19,7 +19,7 @@ $(function () {
   var formView = new FormView({collection:postings});
   var appView = new PostColView({collection:postings});
   
-  //postings.fetch();
+  postings.fetch();
   
   Backbone.history.start();
   

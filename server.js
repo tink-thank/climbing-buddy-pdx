@@ -145,7 +145,7 @@ app.get('/posts', function(req, res){
 app.post('/posts/:id', function (req, res){
   console.log(req.body);
   console.log(req.params.id); //need to fix so only getting back the part after the colon (right now it is included)
-  db.put('testPosts', 'post' + req.params.postingId, req.body)
+  db.put('testPosts', 'post' + req.params.id, req.body)
   .then(function (){
     console.log("POST HAS BEEN POSTed IN DATABASE");
     res.end();

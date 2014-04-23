@@ -144,7 +144,7 @@ app.get('/posts', function(req, res){
 // NEED TO ADD FILTER SO NO WIERDOS RUIN OUR SITE!!!
 app.post('/posts/:id', function (req, res){
   console.log(req.body);
-  console.log(req.params.postingId); //need to fix so only getting back the part after the colon (right now it is included)
+  console.log(req.params.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.params.postingId, req.body)
   .then(function (){
     console.log("POST HAS BEEN POSTed IN DATABASE");
@@ -158,7 +158,7 @@ app.post('/posts/:id', function (req, res){
 // POST method to update a post in the database when a repy is made to it
 app.post('/posts/:id/reply', function (req, res){
   console.log(req.body);
-  db.put('testPosts', 'post' + req.params.postingId, req.body)
+  db.put('testPosts', 'post' + req.params.id, req.body)
   .then(function (){
     console.log("POST HAS BEEN POSTed IN DATABASE WITH NEW REPLY");
     res.end();

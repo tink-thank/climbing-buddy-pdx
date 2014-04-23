@@ -1,32 +1,35 @@
 var postingsViewTemplate = require('../../templates/posting.handlebars');
 
 var PostingView = Thorax.View.extend({
-  template: postingsViewTemplate,
-  name: 'Posting View',
-  el: '#main',
-
+  template: Handlebars.compile('{{collection}}') ,
+  name: 'posting-view',
+  context: function (model, i) {
+    return this.model.attributes;
+  },
+  
   initialize: function () {
     this.render();
+    console.log(this.model.attributes.postingId)
   },
-
+  
   events: {
-    'click #posting-reply-button': function () {      
-      var reply = $("#posting-reply");
+  'click #posting-reply-button': function () {      
+    var reply = $("#posting-reply");
+    console.log(reply.val());
 
-      if (reply.val()) {
-        
-        //This needs fixing. Obviously.
-        this.model.attributes.replies.push({
-          user: 'Test User Please Ignore',
-          message: reply.val(),
-          time: new Date().toDateString(),
-        });
-
-        reply.val('');
-      }
+//      if (reply.val()) {        
+//        //This needs fixing. Obviously.
+//        this.model.attributes.replies.push({
+//          user: 'Test User Please Ignore',
+//          message: reply.val(),
+//          time: new Date().toDateString(),
+//        });
+//        reply.val('');
+//      }
     }
   }
-
+  
+  
 });
 
 module.exports = PostingView;

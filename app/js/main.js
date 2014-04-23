@@ -5,19 +5,21 @@ var data = '';
 
 $(function () {
   
-  $.getJSON('/posts', function (jsonData) {
-    data = jsonData;
-    console.log(data)
-  })
+//  $.getJSON('/posts', function (jsonData) {
+//    data = jsonData;
+//    console.log(data)
+//  })
+//  
   
   var app = {}
   window.app = app;    
 
   var postings = new Postings();
-  postings.reset(data);
 
   var formView = new FormView({collection:postings});
   var appView = new PostColView({collection:postings});
+  
+  //postings.fetch();
   
   Backbone.history.start();
   

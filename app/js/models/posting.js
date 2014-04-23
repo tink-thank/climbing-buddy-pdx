@@ -1,7 +1,7 @@
 var Posting = Thorax.Model.extend({
   name:'Posting Model',
   
-  urlRoot: '/posts',
+  //urlRoot: '/posts',
   
   defaults: {
     postingId: 10000,

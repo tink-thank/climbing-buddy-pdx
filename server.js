@@ -140,7 +140,7 @@ app.get('/posts', function(req, res){
   
 });
 
-app.post('/posts', function (req, res) {
+app.post('/posts/*', function (req, res) {
   console.log(req.body);
   console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
@@ -153,7 +153,7 @@ app.post('/posts', function (req, res) {
   });
 });
 
-app.put('/posts', function (req, res) {
+app.put('/posts/*', function (req, res) {
   console.log(req.body);
   console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)

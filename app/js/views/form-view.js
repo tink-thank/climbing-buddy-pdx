@@ -19,47 +19,40 @@ var FormView = Thorax.View.extend({
   },
 
   newPosting: function () {
-    var user = {};
-    
-    $.getJSON('/user', function (data) {
-      user = data;
-      console.log(user, user.displayName);
-    });
-    
-    var postingId = this.postingIdMaker();
-    
     var clmb = {
       gym: $('#climb-gym'),
       eta: $('#climb-eta'),
       duration: $('#climb-duration'),
       details: $('#climb-details'),
     };
+    
+    var postingId = this.postingIdMaker();
+    var self = this;
+    
+    $.getJSON('/user', function (data) {
+      self.collection.add({
+        postingId: postingId,
+        title: 'posting-' + postingId,
+        timeStamp: Date.now(),
+        userName: data.displayName,
+        userImg: data.avatar,
+        climbGym: clmb.gym.val(),
+        climbEta: clmb.eta.val(),
+        climbDuration: clmb.duration.val(),
+        climbDetails: clmb.details.val(),
+        replies: false,
+        id: postingId,
+      });
 
-    this.collection.add({
-      postingId: postingId,
-      title: 'posting-' + postingId,
-      timeStamp: Date.now(),
-      userName: user.displayName,
-      userImg: user.avatar,
-      climbGym: clmb.gym.val(),
-      climbEta: clmb.eta.val(),
-      climbDuration: clmb.duration.val(),
-      climbDetails: clmb.details.val(),
-      replies: false,
-      id: postingId,
     });
-
+    
     clmb.gym.val('');
     clmb.eta.val('');
     clmb.duration.val('');
     clmb.details.val('');    
 
     $('.row-offcanvas').toggleClass('active');
-
   },
-  
-
-
 });
 
 module.exports = FormView;

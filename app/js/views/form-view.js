@@ -20,10 +20,10 @@ var FormView = Thorax.View.extend({
 
   newPosting: function () {
     var clmb = {
-      gym: $('#climb-gym'),
-      eta: $('#climb-eta'),
-      duration: $('#climb-duration'),
-      details: $('#climb-details'),
+      gym: $('#climb-gym').val(),
+      eta: $('#climb-eta').val(),
+      duration: $('#climb-duration').val(),
+      details: $('#climb-details').val(),
     };
     
     var postingId = this.postingIdMaker();
@@ -31,26 +31,27 @@ var FormView = Thorax.View.extend({
     
     $.getJSON('/user', function (data) {
       
+      
       self.collection.add({
         postingId: postingId,
         title: 'posting-' + postingId,
         timeStamp: Date.now(),
         userName: data.displayName,
         userImg: data.avatar,
-        climbGym: this.clmb.gym.val(),
-        climbEta: this.clmb.eta.val(),
-        climbDuration: this.clmb.duration.val(),
-        climbDetails: this.clmb.details.val(),
+        climbGym: clmb.gym,
+        climbEta: clmb.eta,
+        climbDuration: clmb.duration,
+        climbDetails: clmb.details,
         replies: false,
         id: postingId,
       });
 
     });
     
-    clmb.gym.val('');
-    clmb.eta.val('');
-    clmb.duration.val('');
-    clmb.details.val('');    
+//    clmb.gym.val('');
+//    clmb.eta.val('');
+//    clmb.duration.val('');
+//    clmb.details.val('');    
 
     $('.row-offcanvas').toggleClass('active');
   },

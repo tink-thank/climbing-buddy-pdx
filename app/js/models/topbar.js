@@ -10,4 +10,4 @@ var TopBar = Thorax.Model.extend({
   }
 });
 
-module.exports = TopBar;
+module.exports = TopBar; 

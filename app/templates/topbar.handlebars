@@ -1,0 +1,48 @@
+<div class="navbar navbar-fixed-top navbar-inverse topbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Climbing Buddy PDX</a>
+          
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <i class="fa fa-bars"></i>
+      </button>
+      
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas">
+        <i class="fa fa-plus"></i>
+      </button>
+    
+    </div>
+    
+    
+    
+    <div class="collapse navbar-collapse no-list">
+      <li class="navbar-text navbar-right dropdown">
+        Hi, {{displayName}}! 
+        <img class="hidden-xs" src="{{avatar}}">
+        <a class="hidden-xs dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="fa fa-caret-down fa-lg"></i>
+        </a>
+        <a class="visible-xs" href="/logout">Logout</a>
+      <ul class="dropdown-menu">        
+          <li><a href="/logout">Logout</a></li>                  
+      </ul>
+
+      </li>
+    
+<!--
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+      </ul>
+    </li>
+-->
+    </div>
+  
+    
+    <div class="collapse">
+      
+    </div>
+    
+  </div>
+</div>

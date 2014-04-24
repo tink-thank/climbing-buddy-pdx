@@ -1,0 +1,8 @@
+.topbar {
+  display: inline-block;
+  list-style: none; }
+  .topbar img {
+    padding: 0 0 5px 0;
+    max-height: 45px; }
+  .topbar .navbar-text {
+    margin: 5px 0 0 0; }

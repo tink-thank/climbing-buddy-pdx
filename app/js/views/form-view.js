@@ -19,6 +19,13 @@ var FormView = Thorax.View.extend({
   },
 
   newPosting: function () {
+    var user = {};
+    
+    $.getJSON('/user', function (data) {
+      user = data;
+      console.log(data);
+    });
+    
     var postingId = this.postingIdMaker();
     
     var clmb = {
@@ -33,7 +40,7 @@ var FormView = Thorax.View.extend({
       title: 'posting-' + postingId,
       timeStamp: Date.now(),
       userName: 'Default User, please replace', //Update with log-in auth stuffs
-      userImg: 'test.jpg', //update with log-in auth stuffs
+      userImg: 'http://www.placekitten.com/g/75/75', //update with log-in auth stuffs
       climbGym: clmb.gym.val(),
       climbEta: clmb.eta.val(),
       climbDuration: clmb.duration.val(),

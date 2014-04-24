@@ -30,16 +30,17 @@ var FormView = Thorax.View.extend({
     var self = this;
     
     $.getJSON('/user', function (data) {
+      
       self.collection.add({
         postingId: postingId,
         title: 'posting-' + postingId,
         timeStamp: Date.now(),
         userName: data.displayName,
         userImg: data.avatar,
-        climbGym: clmb.gym.val(),
-        climbEta: clmb.eta.val(),
-        climbDuration: clmb.duration.val(),
-        climbDetails: clmb.details.val(),
+        climbGym: this.clmb.gym.val(),
+        climbEta: this.clmb.eta.val(),
+        climbDuration: this.clmb.duration.val(),
+        climbDetails: this.clmb.details.val(),
         replies: false,
         id: postingId,
       });

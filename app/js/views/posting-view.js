@@ -1,4 +1,5 @@
 var postingsViewTemplate = require('../../templates/posting.handlebars');
+var Reply = require('../models/reply.js');
 
 var PostingView = Thorax.View.extend({
   template: Handlebars.compile('{{collection}}') ,
@@ -20,20 +21,12 @@ var PostingView = Thorax.View.extend({
 
   addReply: function () {      
     var reply = $(".posting-reply").val();
-    var replyArray = this.model.get('replies');
-    replyArray.push(reply);
+    var replyArray = this.model.get('replies');  
+    
+    replyArray.push( new Reply({ message: reply }) );
     this.model.save({ replies: replyArray });
     
-    $(".posting-reply").val('');
-//    console.log(reply);
-//    var replyArray = this.model.get('replies');
-//    console.log(replyArray);
-//    console.log(this.model);
-//    replyArray.push(reply);
-//    
-//    this.model.set('replies', replyArray);
-    
-    
+    $(".posting-reply").val('');    
   }
   
   

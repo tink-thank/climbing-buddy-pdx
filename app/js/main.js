@@ -2,10 +2,15 @@ var Postings = require('./collections/postings.js');
 // var Posting = require('./models/posting.js');
 var FormView = require('./views/form-view.js');
 var PostColView = require('./views/posting-collection-view.js');
-var data = '';
+var userData = '';
 
 var TopBar = require('./models/topbar.js')
 var TopBarView = require('./views/topbar-view.js');
+
+$.getJSON('/user', function (data) {
+  userData = data;
+  console.log(data);
+})
 
 $(function () {
 

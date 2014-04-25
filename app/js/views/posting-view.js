@@ -16,14 +16,17 @@ var PostingView = Thorax.View.extend({
   events: {
     'click .posting-reply-button': 'addReply'
   },
-  
-
 
   addReply: function () {      
     var reply = $(".posting-reply").val();
-    var replyArray = this.model.get('replies');  
+    var replyArray = this.model.get('replies');
+    var replyObj = {
+      displayName: 'Test User',
+      avatar: 'http://lorempixel.com/75/75',
+      message: reply
+    }
     
-    replyArray.push( new Reply({ message: reply }) );
+    replyArray.push( replyObj );
     this.model.save({ replies: replyArray });
     
     $(".posting-reply").val('');    

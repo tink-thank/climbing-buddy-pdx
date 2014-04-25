@@ -15,6 +15,7 @@
       </div>
     </div>
   </div>
+  
   {{#if replies}}
   <div class="panel-body">
     {{#each replies}}
@@ -31,6 +32,7 @@
     {{/each}}
   </div>
   {{/if}}
+  
   <div class="panel-footer">
     <textarea class="form-control posting-reply" rows="1" type="text" name="posting-reply" id="reply-{{postingId}}" placeholder="Maybe we should meet up..."></textarea>
     <button class="btn btn-default posting-reply-button" id="reply-button-{{postingId}}" type="submit">Reply</button>

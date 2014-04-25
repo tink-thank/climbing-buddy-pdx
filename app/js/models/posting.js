@@ -1,14 +1,9 @@
 var Posting = Thorax.Model.extend({
   name:'Posting Model',
   
-  urlRoot: '/posts',
-  
-  initialize: function () {
-    this.save();
-  },
-  
   defaults: {
     postingId: 10000,
+    id: 10000,
     title: 'default post, please ignore',
     timeStamp: Date.now(),
     userName: 'Alex Honnold Default',
@@ -33,7 +28,7 @@ var Posting = Thorax.Model.extend({
         userName: 'Chris Sharma',
         message: 'You sent that V-10! Like what!',
         time: ' Wed, 5:40 PM'
-      },
+      }
     ]
   }
 

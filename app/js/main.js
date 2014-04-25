@@ -19,10 +19,7 @@ $(function () {
   var app = {}
   window.app = app;    
 
-  // var posting = new Posting();
   var postings = new Postings();
-  postings.fetch();
-  //postings.fetch({reset: true});
 
   var topBar = new TopBar()
   var topBarView = new TopBarView({model: topBar});

@@ -1,15 +1,17 @@
 var postingsViewTemplate = require('../../templates/posting.handlebars');
 
 var PostingView = Thorax.View.extend({
-  template: Handlebars.compile('{{collection}}') ,
-  name: 'posting-view',
-  context: function (model, i) {
-    return this.model.attributes;
-  },
+  template: Handlebars.compile('{{model}}') ,
+  // name: 'posting-view',
+  tagName: 'div',
   
   initialize: function () {
-    this.render();
     this.listenTo(this.model, 'change', this.render);
+  },
+
+  render: function () {
+    this.$el.html(template);
+    return this;
   },
   
   events: {
@@ -17,14 +19,15 @@ var PostingView = Thorax.View.extend({
   },
 
   addReply: function () {      
-    var reply = $("#posting-reply").val();
+    var value = $("#posting-reply").val();
     console.log(reply);
     var replyArray = this.model.get('replies');
     console.log(replyArray);
-    console.log(this.model);
+    // console.log(this.model);
     replyArray.push(reply);
     
     this.model.set('replies', replyArray);
+    this.model.save(replies);
 
 //      if (reply.val()) {        
 //        //This needs fixing. Obviously.

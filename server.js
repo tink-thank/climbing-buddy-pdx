@@ -109,7 +109,7 @@ app.get('/logout', function(req, res){
 })
 
 // get posts from database
-app.get('/posts', function(req, res){
+app.get('/posts', isLoggedIn, function(req, res){
   console.log("GETTING /POSTS");
   var postsList = [];
   
@@ -140,20 +140,30 @@ app.get('/posts', function(req, res){
   
 });
 
-app.post('/posts/*', function (req, res) {
+app.get('posts/*', isLoggedIn, function (req, res){
+  db.get('testPosts', 'post' + req.body.id)
+  .then(function (result){
+    res.json(200, result.body.results);
+  })
+  .fail(function (err){
+    console.log(err);
+  })
+});
+
+app.post('/posts/*', isLoggedIn, function (req, res) {
   console.log(req.body);
   console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
-  .then(function (){
+  .then(function (result){
     console.log("POST HAS BEEN POSTed IN DATABASE");
-    res.end();
+    res.json(200, result.request.body.toString());
   })
   .fail(function(err){
     console.log(err);
   });
 });
 
-app.put('/posts/*', function (req, res) {
+app.put('/posts/*', isLoggedIn, function (req, res) {
   console.log(req.body);
   console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
@@ -164,7 +174,17 @@ app.put('/posts/*', function (req, res) {
   .fail(function(err){
     console.log(err);
   });
-})
+});
+
+app.delete('/posts/*',isLoggedIn,  function (req, res){
+  db.remove('testPosts', post + req.body.id, true)
+  .then(function (result) {
+    console.log("SUCCESSFULLY REMOVED FROM DB");
+  })
+  .fail(function (err) {
+    console.log(err);
+  })
+});
 
 // //POST posts to database
 // // NEED TO ADD FILTER SO NO WIERDOS RUIN OUR SITE!!!

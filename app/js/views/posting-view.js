@@ -18,13 +18,13 @@ var PostingView = Thorax.View.extend({
 
   addReply: function () {      
     var reply = $("#posting-reply").val();
-    // console.log(reply);
+    console.log(reply);
     var replyArray = this.model.get('replies');
     console.log(replyArray);
     console.log(this.model);
-    // replyArray.push(reply);
+    replyArray.push(reply);
     
-    // this.model.set('replies', replyArray);
+    this.model.set('replies', replyArray);
 
 //      if (reply.val()) {        
 //        //This needs fixing. Obviously.

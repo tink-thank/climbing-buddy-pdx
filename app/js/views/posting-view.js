@@ -1,8 +1,8 @@
 var postingsViewTemplate = require('../../templates/posting.handlebars');
 
 var PostingView = Thorax.View.extend({
-  template: Handlebars.compile('{{model}}') ,
-  // name: 'posting-view',
+  // template: Handlebars.compile('{{model}}') ,
+  name: 'posting',
   tagName: 'div',
   
   initialize: function () {

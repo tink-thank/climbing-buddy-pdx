@@ -3,9 +3,9 @@ var PostingView = require('./posting-view');
 var Posting = require('../models/posting.js');
 
 var PostingCollectionView = Thorax.CollectionView.extend({
-  template: Handlebars.complie('{{collection}}'),
+  // template: Handlebars.complie('{{collection}}'),
   // itemView: PostingView,
-  // name: 'Postings Collection View',
+  name: 'postingcoll',
   el: '#main',
   
   initialize: function () {

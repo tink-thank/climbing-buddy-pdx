@@ -9,12 +9,22 @@ var PostingView = Thorax.View.extend({
   
   initialize: function () {
     this.render();
+    this.listenTo(this.model, 'change', this.render);
   },
   
   events: {
-  'click #posting-reply-button': function () {      
-    var reply = $("#posting-reply");
-    console.log(reply.val());
+  'click #posting-reply-button': 'addReply'
+  },
+
+  addReply: function () {      
+    var reply = $("#posting-reply").val();
+    // console.log(reply);
+    var replyArray = this.model.get('replies');
+    console.log(replyArray);
+    console.log(this.model);
+    // replyArray.push(reply);
+    
+    // this.model.set('replies', replyArray);
 
 //      if (reply.val()) {        
 //        //This needs fixing. Obviously.
@@ -26,7 +36,6 @@ var PostingView = Thorax.View.extend({
 //        reply.val('');
 //      }
     }
-  }
   
   
 });

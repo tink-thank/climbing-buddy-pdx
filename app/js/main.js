@@ -1,4 +1,5 @@
 var Postings = require('./collections/postings.js');
+// var Posting = require('./models/posting.js');
 var FormView = require('./views/form-view.js');
 var PostColView = require('./views/posting-collection-view.js');
 var data = '';
@@ -18,6 +19,7 @@ $(function () {
   var app = {}
   window.app = app;    
 
+  // var posting = new Posting();
   var postings = new Postings();
   postings.fetch();
   //postings.fetch({reset: true});

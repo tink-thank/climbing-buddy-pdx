@@ -6,4 +6,4 @@ var Postings = Thorax.Collection.extend({
   url: '/posts'
 });
 
-module.exports = Postings;
+module.exports = Postings

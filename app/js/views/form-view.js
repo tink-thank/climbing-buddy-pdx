@@ -34,8 +34,9 @@ var FormView = Thorax.View.extend({
     var postingId = this.postingIdMaker();
     var self = this;
     
-    $.getJSON('/user', function (data) {
-      
+    console.log(userData);
+    
+    $.getJSON('/user', function (data) {      
       
       self.collection.add({
         postingId: postingId,

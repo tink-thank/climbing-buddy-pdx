@@ -7,38 +7,41 @@ var userData = '';
 var TopBar = require('./models/topbar.js')
 var TopBarView = require('./views/topbar-view.js');
 
-$.getJSON('/user', function (data) {
-  userData = data;
-  console.log(data);
-})
+
+
+
 
 $(function () {
+  $.getJSON('/user', function (data) {
+    
+    userData = data;
+    console.log(data);
+
+    var ClimbingRouter = Backbone.Router.extend({});
+    var myClimbingRouter = new ClimbingRouter;
+
+    Backbone.history.start();
 
 
-  var ClimbingRouter = Backbone.Router.extend({});
-  var myClimbingRouter = new ClimbingRouter;
+    var app = {}
+    window.app = app;    
 
-  Backbone.history.start();
+    // var posting = new Posting();
+    var postings = new Postings();
+    postings.fetch();
+    //postings.fetch({reset: true});
 
-  
-  var app = {}
-  window.app = app;    
+    var topBar = new TopBar()
+    var topBarView = new TopBarView({model: topBar});
 
-  // var posting = new Posting();
-  var postings = new Postings();
-  postings.fetch();
-  //postings.fetch({reset: true});
+    var formView = new FormView({collection:postings});
+    var appView = new PostColView({collection:postings});
 
-  var topBar = new TopBar()
-  var topBarView = new TopBarView({model: topBar});
-  
-  var formView = new FormView({collection:postings});
-  var appView = new PostColView({collection:postings});
-  
 
-  
-  
-  
-  app.postings = postings;
+
+
+
+    app.postings = postings;
+  });
 
 });

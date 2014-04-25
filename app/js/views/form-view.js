@@ -4,7 +4,6 @@ var FormView = Thorax.View.extend({
   template: formViewTemplate,
   name: 'Form View',
   el: '#sidebar',
-  count: 10001,
   
   events: {
     'click #posting-submit-button': 'newPosting',
@@ -33,8 +32,6 @@ var FormView = Thorax.View.extend({
     
     var postingId = this.postingIdMaker();
     var self = this;
-    
-    console.log(userData);
     
     $.getJSON('/user', function (data) {      
       

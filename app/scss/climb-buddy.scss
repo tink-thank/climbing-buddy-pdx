@@ -22,3 +22,10 @@ body{
   border-color: rgba(0, 0, 0, 0.21);
   border-radius: 0; 
 }
+
+.panel-posting{
+  img{
+    max-height: 75px;
+    max-width: 75px;
+  }
+}

@@ -140,15 +140,15 @@ app.get('/posts', isLoggedIn, function(req, res){
   
 });
 
-app.get('posts/*', isLoggedIn, function (req, res){
-  db.get('testPosts', 'post' + req.body.id)
-  .then(function (result){
-    res.json(200, result.body.results);
-  })
-  .fail(function (err){
-    console.log(err);
-  })
-});
+// app.get('posts/*', isLoggedIn, function (req, res){
+//   db.get('testPosts', 'post' + req.body.id)
+//   .then(function (result){
+//     res.json(200, result.body.results);
+//   })
+//   .fail(function (err){
+//     console.log(err);
+//   })
+// });
 
 app.post('/posts/*', isLoggedIn, function (req, res) {
   console.log(req.body);

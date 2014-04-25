@@ -109,7 +109,7 @@ app.get('/logout', function(req, res){
 })
 
 // get posts from database
-app.get('/posts', function(req, res){
+app.get('/posts', isLoggedIn, function(req, res){
   console.log("GETTING /POSTS");
   var postsList = [];
   
@@ -140,7 +140,7 @@ app.get('/posts', function(req, res){
   
 });
 
-app.get('posts/*', function (req, res){
+app.get('posts/*', isLoggedIn, function (req, res){
   db.get('testPosts', 'post' + req.body.id)
   .then(function (result){
     res.json(200, result.body.results);
@@ -150,7 +150,7 @@ app.get('posts/*', function (req, res){
   })
 });
 
-app.post('/posts/*', function (req, res) {
+app.post('/posts/*', isLoggedIn, function (req, res) {
   console.log(req.body);
   console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
@@ -163,7 +163,7 @@ app.post('/posts/*', function (req, res) {
   });
 });
 
-app.put('/posts/*', function (req, res) {
+app.put('/posts/*', isLoggedIn, function (req, res) {
   console.log(req.body);
   console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
@@ -176,7 +176,7 @@ app.put('/posts/*', function (req, res) {
   });
 });
 
-app.delete('/posts/*', function (req, res){
+app.delete('/posts/*',isLoggedIn,  function (req, res){
   db.remove('testPosts', post + req.body.id, true)
   .then(function (result) {
     console.log("SUCCESSFULLY REMOVED FROM DB");

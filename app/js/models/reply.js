@@ -6,7 +6,7 @@ var Reply = Thorax.Model.extend({
 //  }
   defaults: {
     displayName: 'Test User',
-    avatar: 'http://www.placekitten.com/75/75',
+    avatar: 'http://lorempixel.com/75/75',
     message: 'hello world'
   }
 });

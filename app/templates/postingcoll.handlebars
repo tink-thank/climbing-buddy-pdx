@@ -20,9 +20,9 @@
     {{#each replies}}
     <div class="list-group">
       <div href="#" class="list-group-item">
-        <!--            <div class="col-xs-2"><img class="img-responsive"  src="http://www.placekitten.com/40/40" /></div>-->
+        <!--            <div class="col-xs-2"><img class="img-responsive"  src="{{this.avatar}}" /></div>-->
         <p class="list-group-item-text">
-          <strong>{{this.user}}</strong> - {{this.message}}
+          <strong>{{this.displayName}}</strong> - {{this.message}}
           <br>
           <small>{{this.time}}</small>
         </p>

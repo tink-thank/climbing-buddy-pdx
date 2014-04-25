@@ -7,7 +7,8 @@ var FormView = Thorax.View.extend({
   count: 10001,
   
   events: {
-    'click #posting-submit-button': 'newPosting'
+    'click #posting-submit-button': 'newPosting',
+    'keypress #climb-details': 'createOnEnter'
   },
 
   initialize: function () {
@@ -16,6 +17,10 @@ var FormView = Thorax.View.extend({
   
   postingIdMaker: function () {
     return Math.floor( Math.random() * 1000000000 );
+  },
+  
+  createOnEnter: function () {
+    
   },
 
   newPosting: function () {

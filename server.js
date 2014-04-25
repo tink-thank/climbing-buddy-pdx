@@ -172,7 +172,7 @@ app.put('/posts/*', isLoggedIn, function (req, res) {
     res.end();
   })
   .fail(function(err){
-    console.log("PUT ERRRRR:" + err.body);
+    console.log("PUT ERRRRR:" + err.body.message);
   });
 });
 

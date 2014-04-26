@@ -7,14 +7,9 @@ var userData = '';
 var TopBar = require('./models/topbar.js')
 var TopBarView = require('./views/topbar-view.js');
 
-
-
-
-
 $(function () {
-  $.getJSON('/user', function (data) {
-    
-    userData = data;
+  $.getJSON('/user', function (data) {    
+
     console.log(data);
 
     var ClimbingRouter = Backbone.Router.extend({});
@@ -22,26 +17,19 @@ $(function () {
 
     Backbone.history.start();
 
-
-    var app = {}
-    window.app = app;    
-
-    // var posting = new Posting();
     var postings = new Postings();
     postings.fetch();
-    //postings.fetch({reset: true});
 
-    var topBar = new TopBar()
+    var topBar = new TopBar({userData: data})
     var topBarView = new TopBarView({model: topBar});
 
-    var formView = new FormView({collection:postings});
+    var formView = new FormView({collection:postings, userData: data});
     var appView = new PostColView({collection:postings});
-
-
-
-
-
+    
+    var app = {}
+    window.app = app;    
     app.postings = postings;
+    
   });
 
 });

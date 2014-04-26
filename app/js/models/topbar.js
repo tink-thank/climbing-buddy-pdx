@@ -1,12 +1,15 @@
 var TopBar = Thorax.Model.extend({
-  urlRoot: '/user',
+  //urlRoot: '/user',
 //  defaults: {
 //    userName: 'Testing UserName, Please Ignore',
 //    userImg: 'http://www.placekitten.com/75/75'
 //  }
+  
+  userData: {},  
+  
   defaults: {
-    displayName: 'Test User',
-    avatar: 'http://www.placekitten.com/75/75'
+    userName: this.userData.displayName,
+    userImg: this.userData.avatar
   }
 });
 

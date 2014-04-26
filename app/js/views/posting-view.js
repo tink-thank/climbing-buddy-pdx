@@ -4,6 +4,9 @@ var Reply = require('../models/reply.js');
 var PostingView = Thorax.View.extend({
   template: Handlebars.compile('{{collection}}') ,
   name: 'posting-view',
+  
+  userData: {},
+  
   context: function (model, i) {
     return this.model.attributes;
   },
@@ -21,9 +24,9 @@ var PostingView = Thorax.View.extend({
     var replyArray = this.model.get('replies');
     
     replyArray.push({
-      displayName: 'Test User',
-      avatar: 'http://lorempixel.com/75/75',
-      message: $(".posting-reply").val()
+      userName: this.userData.displayName,
+      userImg: this.userData.avatar,
+      message: $(".posting-reply").val().trim()
     });
     
     console.log(this.model.replies);

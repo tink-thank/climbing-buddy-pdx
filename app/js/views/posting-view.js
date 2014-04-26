@@ -25,7 +25,8 @@ var PostingView = Thorax.View.extend({
       avatar: 'http://lorempixel.com/75/75',
       message: $(".posting-reply").val()
     });
-    console.log(replyArray);
+    
+    console.log(this.model.replies);
     this.model.save({ replies: replyArray });
     
     $(".posting-reply").val('');    

@@ -23,6 +23,7 @@ var FormView = Thorax.View.extend({
   },
 
   newPosting: function () {
+    var self = this;   
     $.getJSON('/user', function (data) {
       var clmb = {
         gym: $('#climb-gym').val(),
@@ -31,8 +32,8 @@ var FormView = Thorax.View.extend({
         details: $('#climb-details').val().trim(),
       };
 
-      var postingId = this.postingIdMaker();
-      var self = this;    
+      var postingId = self.postingIdMaker();
+       
 
       self.collection.create({
         postingId: postingId,

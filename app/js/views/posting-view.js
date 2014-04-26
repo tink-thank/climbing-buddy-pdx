@@ -1,31 +1,45 @@
-var postingsViewTemplate = require('../../templates/posting.handlebars');
+var Reply = require('../models/reply.js');
 
 var PostingView = Thorax.View.extend({
   template: Handlebars.compile('{{collection}}') ,
   name: 'posting-view',
+  
   context: function (model, i) {
     return this.model.attributes;
   },
   
   initialize: function () {
     this.render();
+    this.listenTo(this.model, 'change', this.render);
   },
   
   events: {
-  'click #posting-reply-button': function () {      
-    var reply = $("#posting-reply");
-    console.log(reply.val());
+    'click .posting-reply-button': 'addReply'
+  },
 
-//      if (reply.val()) {        
-//        //This needs fixing. Obviously.
-//        this.model.attributes.replies.push({
-//          user: 'Test User Please Ignore',
-//          message: reply.val(),
-//          time: new Date().toDateString(),
-//        });
-//        reply.val('');
-//      }
-    }
+  addReply: function (event) {
+    
+    var self = this;
+    
+    $.getJSON('/user', function (data) {
+    
+      var replyArray = _.clone(self.model.get('replies'));
+
+      replyArray.push({
+        userName: data.displayName,
+        userImg: data.avatar,
+        message: $(".posting-reply").val().trim(),
+        time: new Date().toDateString(),
+        timeStamp: Date.now()
+      });
+
+      self.model.save({ replies: replyArray });
+      
+      console.log(self.model.replies);
+
+      $(".posting-reply").val('');
+      
+    });
   }
   
   

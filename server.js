@@ -135,44 +135,44 @@ app.get('/posts', isLoggedIn, function(req, res){
     res.json(200, postsList);
   })
   .fail(function (err){
-    console.log(err)
+    console.log("GET ERRRRR:" + err.body)
   });
   
 });
 
-app.get('posts/*', isLoggedIn, function (req, res){
-  db.get('testPosts', 'post' + req.body.id)
-  .then(function (result){
-    res.json(200, result.body.results);
-  })
-  .fail(function (err){
-    console.log(err);
-  })
-});
+// app.get('posts/*', isLoggedIn, function (req, res){
+//   db.get('testPosts', 'post' + req.body.id)
+//   .then(function (result){
+//     res.json(200, result.body.results);
+//   })
+//   .fail(function (err){
+//     console.log(err);
+//   })
+// });
 
 app.post('/posts/*', isLoggedIn, function (req, res) {
-  console.log(req.body);
-  console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
+  // console.log(req.body);
+  // console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
   .then(function (result){
     console.log("POST HAS BEEN POSTed IN DATABASE");
     res.json(200, result.request.body.toString());
   })
   .fail(function(err){
-    console.log(err);
+    console.log("POST ERRRRR:" + err.body);
   });
 });
 
 app.put('/posts/*', isLoggedIn, function (req, res) {
-  console.log(req.body);
-  console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
+  // console.log(req.body);
+  // console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
   .then(function (result){
     console.log("POST HAS BEEN UPDATED IN DATABASE" + result.body);
     res.json(200, result.request.body.toString());
   })
   .fail(function(err){
-    console.log(err);
+    console.log("PUT ERRRRR:" + err.body);
   });
 });
 
@@ -182,7 +182,7 @@ app.delete('/posts/*',isLoggedIn,  function (req, res){
     console.log("SUCCESSFULLY REMOVED FROM DB");
   })
   .fail(function (err) {
-    console.log(err);
+    console.log("delete ERRRRR:" + err.body);
   })
 });
 
@@ -245,7 +245,8 @@ authUserGit = function (profile) {
     db.get('testUsers', key)
       .then(function (result){
         //in this case the user already exists in the database we just need to return them
-            console.log("FOUND CEREAL!!" + result.body)
+            // console.log("FOUND CEREAL!!" + result.body)
+            console.log("FOUND CEREAL!!");
             deferred.resolve([null, result.body]);
       })
       //in this case the user is not already in the database and needs to be added before it can be returned
@@ -288,12 +289,12 @@ findByKey = function (key){
         if (result.body.results[0] !== undefined) {
           db.get('testUsers', key)
             .then(function (result){
-            console.log("from the get deserialize:")
-            console.log(result.body);
+            // console.log("from the get deserialize:")
+            // console.log(result.body);
             deferredKey.resolve([null, result.body]);
             })
             .fail(function (err){
-              console.log(err.body);
+              console.log("USER GET ERRRR: " + err.body);
               deferredKey.resolve([err, false]);
             })
         } 
@@ -304,7 +305,7 @@ findByKey = function (key){
         }
       })
       .fail(function (err) {
-        console.log(err.body);
+        console.log("USER SEARCH ERRRR: " + err.body);
       });
 
   return deferredKey.promise;

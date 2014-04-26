@@ -1,37 +1,30 @@
 var Postings = require('./collections/postings.js');
+// var Posting = require('./models/posting.js');
 var FormView = require('./views/form-view.js');
 var PostColView = require('./views/posting-collection-view.js');
-var data = '';
+var userData = '';
 
 var TopBar = require('./models/topbar.js')
 var TopBarView = require('./views/topbar-view.js');
 
-$(function () {
+$(function () {   
 
+    var ClimbingRouter = Backbone.Router.extend({});
+    var myClimbingRouter = new ClimbingRouter;
 
-  var ClimbingRouter = Backbone.Router.extend({});
-  var myClimbingRouter = new ClimbingRouter;
+    Backbone.history.start();
 
-  Backbone.history.start();
+    var postings = new Postings();
+    postings.fetch();
 
-  
-  var app = {}
-  window.app = app;    
+    var topBar = new TopBar()
+    var topBarView = new TopBarView({model: topBar});
 
-  var postings = new Postings();
-  postings.fetch();
-  //postings.fetch({reset: true});
-
-  var topBar = new TopBar()
-  var topBarView = new TopBarView({model: topBar});
-  
-  var formView = new FormView({collection:postings});
-  var appView = new PostColView({collection:postings});
-  
-
-  
-  
-  
-  app.postings = postings;
+    var formView = new FormView({collection:postings});
+    var appView = new PostColView({collection:postings});
+    
+    var app = {}
+    window.app = app;    
+    app.postings = postings;
 
 });

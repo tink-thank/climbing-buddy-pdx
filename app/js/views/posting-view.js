@@ -1,4 +1,3 @@
-var postingsViewTemplate = require('../../templates/posting.handlebars');
 var Reply = require('../models/reply.js');
 
 var PostingView = Thorax.View.extend({
@@ -30,7 +29,8 @@ var PostingView = Thorax.View.extend({
         userName: data.displayName,
         userImg: data.avatar,
         message: $(".posting-reply").val().trim(),
-        time: new Date().toDateString()
+        time: new Date().toDateString(),
+        timeStamp: Date.now()
       });
 
       self.model.save({ replies: replyArray });

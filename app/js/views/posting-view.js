@@ -5,12 +5,6 @@ var PostingView = Thorax.View.extend({
   template: Handlebars.compile('{{collection}}') ,
   name: 'posting-view',
   
-  userData: function () {
-    $.getJSON('/user', function (data) {
-      return data;
-    });
-  },
-  
   context: function (model, i) {
     return this.model.attributes;
   },
@@ -25,18 +19,23 @@ var PostingView = Thorax.View.extend({
   },
 
   addReply: function () {
-    var replyArray = this.model.get('replies');
+    $.getJSON('/user', function(data) {
     
-    replyArray.push({
-      userName: this.userData.displayName,
-      userImg: this.userData.avatar,
-      message: $(".posting-reply").val().trim()
+      var replyArray = this.model.get('replies');
+
+      replyArray.push({
+        userName: data.displayName,
+        userImg: data.avatar,
+        message: $(".posting-reply").val().trim()
+      });
+
+      this.model.save({ replies: replyArray });
+      
+      console.log(this.model.replies);
+
+      $(".posting-reply").val('');
+      
     });
-    
-    console.log(this.model.replies);
-    this.model.save({ replies: replyArray });
-    
-    $(".posting-reply").val('');    
   }
   
   

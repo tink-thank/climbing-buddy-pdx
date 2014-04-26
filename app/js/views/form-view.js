@@ -5,12 +5,6 @@ var FormView = Thorax.View.extend({
   name: 'Form View',
   el: '#sidebar',
   
-  userData: function () {
-    $.getJSON('/user', function (data) {
-      return data;
-    });
-  },
-  
   events: {
     'click #posting-submit-button': 'newPosting',
     'keypress #climb-details': 'createOnEnter'
@@ -29,35 +23,37 @@ var FormView = Thorax.View.extend({
   },
 
   newPosting: function () {
-    var clmb = {
-      gym: $('#climb-gym').val(),
-      eta: $('#climb-eta').val(),
-      duration: $('#climb-duration').val(),
-      details: $('#climb-details').val().trim(),
-    };
-    
-    var postingId = this.postingIdMaker();
-    var self = this;    
-      
-    self.collection.create({
-      postingId: postingId,
-      title: 'posting-' + postingId,
-      timeStamp: Date.now(),
-      userName: this.userData.displayName,
-      userImg: this.userData.avatar,
-      climbGym: clmb.gym,
-      climbEta: clmb.eta,
-      climbDuration: clmb.duration,
-      climbDetails: clmb.details,
-      replies: [],
-      id: postingId,
+    $.getJSON('/user', function (data) {
+      var clmb = {
+        gym: $('#climb-gym').val(),
+        eta: $('#climb-eta').val(),
+        duration: $('#climb-duration').val(),
+        details: $('#climb-details').val().trim(),
+      };
+
+      var postingId = this.postingIdMaker();
+      var self = this;    
+
+      self.collection.create({
+        postingId: postingId,
+        title: 'posting-' + postingId,
+        timeStamp: Date.now(),
+        userName: data.displayName,
+        userImg: data.avatar,
+        climbGym: clmb.gym,
+        climbEta: clmb.eta,
+        climbDuration: clmb.duration,
+        climbDetails: clmb.details,
+        replies: [],
+        id: postingId,
+      });
+
+        $('#climb-gym').val('');
+        $('#climb-eta').val('');
+        $('#climb-duration').val('');
+        $('#climb-details').val('');
+        $('.row-offcanvas').toggleClass('active');
     });
-    
-      $('#climb-gym').val('');
-      $('#climb-eta').val('');
-      $('#climb-duration').val('');
-      $('#climb-details').val('');
-      $('.row-offcanvas').toggleClass('active');
   },
 });
 

@@ -12,7 +12,7 @@ var Posting = Thorax.Model.extend({
     title: 'default post, please ignore',
     timeStamp: Date.now(),
     userName: 'Alex Honnold Default',
-    userImg: 'http://placekitten.com/g/75/75',
+    userImg: 'http://lorempixel.com/75/75',
     climbGym: 'Circuit NE',
     climbEta: '30',
     climbDuration: '60',

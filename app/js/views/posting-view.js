@@ -14,33 +14,50 @@ var PostingView = Thorax.View.extend({
   },
   
   events: {
-    'click .posting-reply-button': 'addReply'
+//    'keydown .posting-reply':'addReplyEnter',
+    'click .posting-reply-button': 'addReply',
+    'click .posting-reply': 'edit',
+    'blur .posting-reply':'removeOrange'
+  },
+  
+  edit: function () {
+    this.$el.addClass('orange');
+  },
+  
+  removeOrange: function () {
+    this.$el.removeClass('orange');
   },
 
-  addReply: function (event) {
+  addReply: function () {
     
     var self = this;
     
     $.getJSON('/user', function (data) {
+      self.$el.addClass('orange');
     
       var replyArray = _.clone(self.model.get('replies'));
 
       replyArray.push({
         userName: data.displayName,
         userImg: data.avatar,
-        message: $(".posting-reply").val().trim(),
+        message: $(".orange").find(".posting-reply").val(),
         time: new Date().toDateString(),
         timeStamp: Date.now()
       });
 
       self.model.save({ replies: replyArray });
-      
-      console.log(self.model.replies);
 
-      $(".posting-reply").val('');
+      self.$el.find('.posting-reply').val('');
+      self.$el.removeClass('orange');
       
     });
-  }
+  },
+  
+//  addReplyEnter: function (e) {
+//			if (e.which === ENTER_KEY) {
+//				this.addReply(); 
+//			}   
+//  }
   
   
 });

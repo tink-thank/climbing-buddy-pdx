@@ -5,7 +5,11 @@ var FormView = Thorax.View.extend({
   name: 'Form View',
   el: '#sidebar',
   
-  userData: {},
+  userData: function () {
+    $.getJSON('/user', function (data) {
+      return data;
+    });
+  },
   
   events: {
     'click #posting-submit-button': 'newPosting',

@@ -7,10 +7,7 @@ var userData = '';
 var TopBar = require('./models/topbar.js')
 var TopBarView = require('./views/topbar-view.js');
 
-$(function () {
-  $.getJSON('/user', function (data) {    
-
-    console.log(data);
+$(function () {   
 
     var ClimbingRouter = Backbone.Router.extend({});
     var myClimbingRouter = new ClimbingRouter;
@@ -20,16 +17,14 @@ $(function () {
     var postings = new Postings();
     postings.fetch();
 
-    var topBar = new TopBar({userData: data})
+    var topBar = new TopBar()
     var topBarView = new TopBarView({model: topBar});
 
-    var formView = new FormView({collection:postings, userData: data});
+    var formView = new FormView({collection:postings});
     var appView = new PostColView({collection:postings});
     
     var app = {}
     window.app = app;    
     app.postings = postings;
-    
-  });
 
 });

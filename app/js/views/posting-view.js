@@ -5,7 +5,11 @@ var PostingView = Thorax.View.extend({
   template: Handlebars.compile('{{collection}}') ,
   name: 'posting-view',
   
-  userData: {},
+  userData: function () {
+    $.getJSON('/user', function (data) {
+      return data;
+    });
+  },
   
   context: function (model, i) {
     return this.model.attributes;

@@ -1,4 +1,4 @@
-var postingsViewTemplate = require('../../templates/postingcoll.handlebars');
+var postingsViewTemplate = require('../../templates/posting.handlebars');
 var PostingView = require('./posting-view');
 var Posting = require('../models/posting.js');
 

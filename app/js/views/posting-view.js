@@ -19,9 +19,12 @@ var PostingView = Thorax.View.extend({
   },
 
   addReply: function () {
+    
+    var self = this;
+    
     $.getJSON('/user', function(data) {
     
-      var replyArray = this.model.get('replies');
+      var replyArray = self.model.get('replies');
 
       replyArray.push({
         userName: data.displayName,
@@ -29,7 +32,7 @@ var PostingView = Thorax.View.extend({
         message: $(".posting-reply").val().trim()
       });
 
-      this.model.save({ replies: replyArray });
+      this.model.set({ replies: replyArray });
       
       console.log(this.model.replies);
 

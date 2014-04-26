@@ -167,7 +167,7 @@ app.put('/posts/*', isLoggedIn, function (req, res) {
   console.log(req.body);
   console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
-  .then(function (){
+  .then(function (result){
     console.log("POST HAS BEEN UPDATED IN DATABASE");
     res.json(200, result.request.body.toString());
   })

@@ -125,11 +125,11 @@ app.get('/posts', isLoggedIn, function(req, res){
       return 0;
     });
     postsReturned.forEach(function(item){
-      item.value.timeStamp = new Date(item.value.timeStamp);
-      console.log(item.value);
+      // item.value.timeStamp = new Date(item.value.timeStamp);
+      console.log("POST ITEM SENDING ON!!" + item.value);
       postsList.push(item.value);
     })
-    console.log(postsList);
+    // console.log(postsList);
   })
   .then(function () {
     res.json(200, postsList);
@@ -169,7 +169,7 @@ app.put('/posts/*', isLoggedIn, function (req, res) {
   db.put('testPosts', 'post' + req.body.id, req.body)
   .then(function (){
     console.log("POST HAS BEEN UPDATED IN DATABASE");
-    res.end();
+    res.json(200, result.request.body.toString());
   })
   .fail(function(err){
     console.log(err);

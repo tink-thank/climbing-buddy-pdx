@@ -18,7 +18,7 @@ var PostingView = Thorax.View.extend({
     'click .posting-reply-button': 'addReply'
   },
 
-  addReply: function () {
+  addReply: function (event) {
     
     var self = this;
     
@@ -29,7 +29,8 @@ var PostingView = Thorax.View.extend({
       replyArray.push({
         userName: data.displayName,
         userImg: data.avatar,
-        message: $(".posting-reply").val().trim()
+        message: $(".posting-reply").val().trim(),
+        time: new Date().toDateString
       });
 
       self.model.save({ replies: replyArray });

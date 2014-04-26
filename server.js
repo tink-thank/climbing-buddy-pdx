@@ -7,7 +7,7 @@ var express  = require('express'),
 var db = require('orchestrate')(process.env.ORCHESTRATE_API_KEY);
 
 var app      = express();
-var port     = process.env.PORT || 5000;
+var port     = 80;
 
 // ===========================
 // PASSPORT

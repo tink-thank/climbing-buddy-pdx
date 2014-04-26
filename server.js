@@ -113,7 +113,11 @@ app.get('/posts', isLoggedIn, function(req, res){
   console.log("GETTING /POSTS");
   var postsList = [];
   
-  db.search('testPosts', 'post*')
+  db.newSearchBuilder()
+  .collection('testPosts')
+  .limit(100)
+  .offset(0)
+  .query('post*')
   .then(function (result) {
     var postsReturned = result.body.results;
     postsReturned.forEach(function (item){
@@ -150,7 +154,7 @@ app.get('/posts', isLoggedIn, function(req, res){
 //   })
 // });
 
-app.post('/posts/*', isLoggedIn, function (req, res) {
+app.post('/posts*', isLoggedIn, function (req, res) {
   // console.log(req.body);
   // console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)

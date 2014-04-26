@@ -24,6 +24,7 @@ var FormView = Thorax.View.extend({
 
   newPosting: function () {
     var self = this;   
+    
     $.getJSON('/user', function (data) {
       var clmb = {
         gym: $('#climb-gym').val(),

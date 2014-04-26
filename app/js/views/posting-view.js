@@ -30,7 +30,7 @@ var PostingView = Thorax.View.extend({
         userName: data.displayName,
         userImg: data.avatar,
         message: $(".posting-reply").val().trim(),
-        time: new Date().toDateString
+        time: new Date().toDateString()
       });
 
       self.model.save({ replies: replyArray });

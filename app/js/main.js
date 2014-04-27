@@ -10,9 +10,11 @@ var TopBarView = require('./views/topbar-view.js');
 $(function () {   
 
     var ClimbingRouter = Backbone.Router.extend({});
-    var myClimbingRouter = new ClimbingRouter;
+    
 
+    var myClimbingRouter = new ClimbingRouter;
     Backbone.history.start();
+    
 
     var postings = new Postings();
     postings.fetch();
@@ -22,7 +24,54 @@ $(function () {
 
     var formView = new FormView({collection:postings});
     var appView = new PostColView({collection:postings});
-    
+
+    myClimbingRouter.route("circuit-ne", "showNE", function () {
+            appView.collection.forEach(function (model){
+                if (model.get('climbGym') === 'Circuit NE') {
+                    var id = model.cid;
+                    $('div[data-model-cid='+id+']').show();
+                }
+                else{
+                    var id = model.cid;
+                    $('div[data-model-cid='+id+']').hide();
+                }
+            })
+    });
+
+    myClimbingRouter.route("circuit-sw", "showSW", function () {
+            appView.collection.forEach(function (model){
+                if (model.get('climbGym') === 'Circuit SW') {
+                    var id = model.cid;
+                    $('div[data-model-cid='+id+']').show();
+                }
+                else{
+                    var id = model.cid;
+                    $('div[data-model-cid='+id+']').hide();
+                }
+            })
+    });
+
+    myClimbingRouter.route("prg", "showPRG", function () {
+            appView.collection.forEach(function (model){
+                if (model.get('climbGym') === 'Portland Rock Gym') {
+                    var id = model.cid;
+                    $('div[data-model-cid='+id+']').show();
+                }
+                else{
+                    var id = model.cid;
+                    $('div[data-model-cid='+id+']').hide();
+                }
+            })
+    });
+
+    myClimbingRouter.route("", "showALL", function () {
+            appView.collection.forEach(function (model){
+                    var id = model.cid;
+                    $('div[data-model-cid='+id+']').show();
+            })
+    });    
+
+
     var app = {}
     window.app = app;    
     app.postings = postings;

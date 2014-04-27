@@ -5,7 +5,10 @@ var Postings = Thorax.Collection.extend({
   model: Posting,
   url: function () {
     return '/posts' + ( (this.id) ? '/' + this.id : '' );
-  }
+  },
+  comparator: function(model){
+        return -model.get("timeStamp");
+    }
 });
 
 module.exports = Postings

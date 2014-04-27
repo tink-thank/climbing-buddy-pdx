@@ -17,7 +17,16 @@ var PostingView = Thorax.View.extend({
 //    'keydown .posting-reply':'addReplyEnter',
     'click .posting-reply-button': 'addReply',
     'click .posting-reply': 'edit',
-    'blur .posting-reply':'removeOrange'
+    'blur .posting-reply':'removeOrange',
+    'click .btn-danger':'removeModelYo'
+  },
+  
+  checkUser: function () {
+    
+  },
+  
+  removeModelYo: function () {
+    this.model.destroy();
   },
   
   edit: function () {
@@ -56,7 +65,7 @@ var PostingView = Thorax.View.extend({
 //  addReplyEnter: function (e) {
 //			if (e.which === ENTER_KEY) {
 //				this.addReply(); 
-//			}   
+//			}    
 //  }
   
   

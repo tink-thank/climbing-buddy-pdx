@@ -36,5 +36,8 @@
   <div class="panel-footer">
     <textarea class="form-control posting-reply" rows="1" type="text" name="posting-reply" placeholder="Maybe we should meet up..."></textarea>
     <button class="btn btn-default posting-reply-button" type="submit">Reply</button>
+    {{#if userAuth}}
+      <button class="btn btn-danger" type="submit">Delete</button>
+    {{/if}}
   </div>
 </div>

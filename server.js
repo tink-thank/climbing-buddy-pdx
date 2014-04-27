@@ -7,7 +7,7 @@ var express  = require('express'),
 var db = require('orchestrate')(process.env.ORCHESTRATE_API_KEY);
 
 var app      = express();
-var port     = 80;
+var port     = 9000;
 
 // ===========================
 // PASSPORT
@@ -77,7 +77,7 @@ app.use(function(req, res, next) {
 // ===========================
 
 // Homepage
-app.get('/', isLoggedIn, function (req, res){
+app.get('/',  function (req, res){
     res.sendfile('./public_html/index.html');
 });
 
@@ -96,7 +96,7 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
 
 // route to send user information to the front end
 app.get('/user', function (req, res){
-  res.json(200, req.user);
+  res.json(200, {"displayName":"Lochness Monster","avatar":"http://static.ddmcdn.com/gif/loch-ness-monster.jpg"});
 })
 
 //logout
@@ -109,7 +109,7 @@ app.get('/logout', function(req, res){
 })
 
 // get posts from database
-app.get('/posts', isLoggedIn, function(req, res){
+app.get('/posts',  function(req, res){
   console.log("GETTING /POSTS");
   var postsList = [];
   
@@ -144,7 +144,7 @@ app.get('/posts', isLoggedIn, function(req, res){
   
 });
 
-// app.get('posts/*', isLoggedIn, function (req, res){
+// app.get('posts/*',  function (req, res){
 //   db.get('testPosts', 'post' + req.body.id)
 //   .then(function (result){
 //     res.json(200, result.body.results);
@@ -154,7 +154,7 @@ app.get('/posts', isLoggedIn, function(req, res){
 //   })
 // });
 
-app.post('/posts*', isLoggedIn, function (req, res) {
+app.post('/posts*',  function (req, res) {
   // console.log(req.body);
   // console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
@@ -167,7 +167,7 @@ app.post('/posts*', isLoggedIn, function (req, res) {
   });
 });
 
-app.put('/posts/*', isLoggedIn, function (req, res) {
+app.put('/posts/*',  function (req, res) {
   // console.log(req.body);
   // console.log(req.body.id); //need to fix so only getting back the part after the colon (right now it is included)
   db.put('testPosts', 'post' + req.body.id, req.body)
@@ -180,10 +180,11 @@ app.put('/posts/*', isLoggedIn, function (req, res) {
   });
 });
 
-app.delete('/posts/*',isLoggedIn,  function (req, res){
-  db.remove('testPosts', post + req.body.id, true)
+app.delete('/posts/*',  function (req, res){
+  db.remove('testPosts', 'post' + req.body.id, true)
   .then(function (result) {
     console.log("SUCCESSFULLY REMOVED FROM DB");
+    res.end;
   })
   .fail(function (err) {
     console.log("delete ERRRRR:" + err.body);

@@ -5,20 +5,12 @@ var Posting = Thorax.Model.extend({
   
   initialize: function () {
     this.save();
-  },
-  
-//  defaults: {
-//    postingId: 10000,
-//    title: 'default post, please ignore',
-//    timeStamp: Date.now(),
-//    userName: 'Alex Honnold Default',
-//    userImg: 'http://lorempixel.com/75/75',
-//    climbGym: 'Circuit NE',
-//    climbEta: '30',
-//    climbDuration: '60',
-//    climbDetails: 'Sending V-10\'s like what',
-//    replies: []
-//  }
+        
+    if(this.get('userName') === user.data.displayName) {
+      this.save({userAuth: true});
+    }
+
+  }
 
 });
 

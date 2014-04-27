@@ -1,6 +1,7 @@
 
 var target_date = new Date().getTime();
- 
+
+var hours; 
 var minutes;
 var seconds;
  
@@ -14,6 +15,6 @@ setInterval(function () {
     minutes = parseInt(seconds_left / 60);
     seconds = parseInt(seconds_left % 60);
      
-    countdown.innerHTML = minutes + " : " + seconds;  
+    countdown.innerHTML = hours + " : " + minutes + " : " + seconds;  
  
 }, 1000);

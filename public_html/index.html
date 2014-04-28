@@ -1,61 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Helping climbers find buddies in PDX since 1965!">
-    <meta name="author" content="Team Tink Thank: Tanks A Lot!">
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connecting Climbers with Climbers!">
+    <meta name="author" content="Tink Thank">
+
     <title>Climbing Buddy PDX</title>
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="css/climb-buddy.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-    <!-- for development only-->
-    <link href="css/bootstrap.css" rel="stylesheet">
-
-    <!-- custom stylesheet -->
-    <link href="css/climb-buddy.css" rel="stylesheet">
-    <script src="js/lib/thorax-combo.js"></script>
-
-    <!-- CDN loaded scripts -->
-   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/thorax/2.2.1/thorax-combined.min.js"></script> -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-    <!-- application logic browserified! -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/thorax/2.2.1/thorax-combined.js"></script>
+    
     <script src="js/main.js"></script>
+</head>
 
+<body>
+  <div id="wrapper">    
+    
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#top">Climbing Buddy PDX</a>
+          <a id="menu-toggle" href="#" class="btn btn-default navbar-toggle"><i class="fa fa-plus fa-lg"></i></a>
+        </div>
+      </div>
+    </nav>
 
-  </head>
+    <div id="sidebar-wrapper">          
+      <div class="inset">
+      <div id="sidebar"></div>
+        
 
-  <body>
-    <div id="top-bar">
+        
+      <div id="sidebar-footer">
+        <p><a href="https://github.com/tink-thank/climbing-buddy-pdx"><i class="fa fa-vert fa-github fa-3x"></i></a>Made with <i class="fa fa-heart-o"></i> and Javascript by Austen, Chris, Dan, and Jhenna</p>        
+      </div>
+        
+      </div>          
     </div>
 
-    <div class="container">
-      <div class="row row-offcanvas row-offcanvas-left">
-
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-          <!--form here, yo-->
-        </div>
-
-        <section class="col-xs-12 col-sm-9" id="main">
-          <div>
-            <p>Looks like nobody is climbing right now..... maybe you should go climbing!</p>
-          </div>
-        </section>
-
+    <div id="page-content-wrapper">
+      <div class="page-content inset">
+        <div id="main"></div>
       </div>
     </div>
-    <script>
-      $(document).ready(function () {
-        $('[data-toggle=offcanvas]').click(function () {
-          $('.row-offcanvas').toggleClass('active');
-        });
-      });
-    </script>
 
-  </body>
+  </div>
+
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+
+    </script>
+</body>
+
 </html>

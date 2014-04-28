@@ -1,27 +1,78 @@
-<aside class="panel-default">
-  <select class="form-control form-inline" id="climb-gym" name="climb-gym">
-    <option value="null">I'm Climbing at:</option>
-    <option value="Circuit NE">The Circuit NE</option>
-    <option value="Circuit SW">The Circuit SW</option>
-    <option value="Portland Rock Gym">Portland Rock Gym</option>
-  </select>
-  <select class="form-control form-inline" id="climb-eta" name="climb-eta">
-    <option value="null">I'm going in:</option>
-    <option value="0">Now!</option>
-    <option value="15">15 minutes</option>
-    <option value="30">30 minutes</option>
-    <option value="45">45 minutes</option>
-    <option value="60">1 hour</option>
-  </select>
-  <select class="form-control form-inline" id="climb-duration" name="climb-duration">
-    <option value="null">I'm climbing for:</option>
-    <option value="30">30 minutes</option>
-    <option value="60">1 hour</option>
-    <option value="90">1.5 hours</option>
-    <option value="120">2 hours</option>
-  </select>
-  More Info for fun:
-  <textarea class="form-control" rows="3" type="text" id="climb-details" name="climb-details" placeholder="Meet me over by the..."></textarea>
-
-  <button class="btn btn-danger" id="posting-submit-button">Go Climbing!</button>
-</aside>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title sidebar-intro panel-small-text">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <img src="http://lorempixel.com/200/200">
+      Christopher Peddecord<br><i class="fa fa-caret-down fa-lg"></i>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body sidebar-body">
+        <p>User data stuff in this space</p>
+        <p>Logout</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Go Climbing!
+          
+        </a>
+      </p>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <select class="form-control form-inline" id="climb-gym" name="climb-gym">
+          <option value="null">I'm Climbing at:</option>
+          <option value="Circuit NE">The Circuit NE</option>
+          <option value="Circuit SW">The Circuit SW</option>
+          <option value="Portland Rock Gym">Portland Rock Gym</option>
+        </select>
+        <select class="form-control form-inline" id="climb-eta" name="climb-eta">
+          <option value="null">I'm going in:</option>
+          <option value="0">Now!</option>
+          <option value="15">15 minutes</option>
+          <option value="30">30 minutes</option>
+          <option value="45">45 minutes</option>
+          <option value="60">1 hour</option>
+        </select>
+        <select class="form-control form-inline" id="climb-duration" name="climb-duration">
+          <option value="null">I'm climbing for:</option>
+          <option value="30">30 minutes</option>
+          <option value="60">1 hour</option>
+          <option value="90">1.5 hours</option>
+          <option value="120">2 hours</option>
+        </select>
+        <textarea class="form-control" rows="3" type="text" id="climb-details" name="climb-details" placeholder="I'm going to be climbing soon..."></textarea>
+        <br>
+        <button class="btn btn-primary" id="posting-submit-button">Climb on!</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Search by Gym
+        </a>
+      </p>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <ul>
+          <li><a href="#circuit-ne">The Circuit NE</a></li>
+          <li><a href="#circuit-sw">The Circuit SW</a></li>
+          <li><a href="#prg">Portland Rock Gym</a></li>
+          <li>&nbsp;</li>
+          <li><a href="#">Reset</a></li>
+        </ul>                
+      </div>
+    </div>
+  </div>
+</div>

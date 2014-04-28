@@ -14,6 +14,7 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/thorax/2.0.0rc6/thorax.js"></script>
+    <script src="js/lib/dropdown.js"></script>
     <script src="js/main.js"></script>
 
 </head>
@@ -25,27 +26,37 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#top">Climbing Buddy PDX</a>
-          <a id="menu-toggle" href="#" class="btn btn-default navbar-toggle"><i class="fa fa-plus fa-lg"></i></a>
+          <a id="menu-toggle" href="#" class="btn btn-default btn-sm navbar-toggle"><i class="fa fa-plus fa-lg"></i></a>
         </div>
       </div>
     </nav>
 
     <div id="sidebar-wrapper">          
       <div class="inset">
-      <div id="sidebar"></div>
-        
-
-        
-      <div id="sidebar-footer">
-        <p><a href="https://github.com/tink-thank/climbing-buddy-pdx"><i class="fa fa-vert fa-github fa-3x"></i></a>Made with <i class="fa fa-heart-o"></i> and Javascript by Austen, Chris, Dan, and Jhenna</p>        
-      </div>
-        
+        <div id="sidebar"></div>
+        <div id="sidebar-footer">
+          <div class="hidden-xs"><a href="https://github.com/tink-thank/climbing-buddy-pdx"><i class="fa fa-vert fa-github fa-3x"></i></a>Made with <i class="fa fa-heart-o"></i> and Javascript by Austen, Chris, Dan, and Jhenna</div>        
+        </div>        
       </div>          
     </div>
 
     <div id="page-content-wrapper">
       <div class="page-content inset">
-        <div id="main"></div>
+
+        <div class="row">
+          
+          <div class="col-xs-12 col-md-8">
+            <div id="main"></div>
+          </div>
+          
+          <div class="col-md-4 hidden-xs hidden-sm">  
+            
+
+            
+            
+          </div>
+        
+        </div>
       </div>
     </div>
 

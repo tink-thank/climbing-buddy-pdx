@@ -1,13 +1,19 @@
 {{view collection}}
-<div class="panel panel-default panel-posting">
+<div class="panel panel-default panel-posting fade-in">
   
   <div class="panel-heading">                  
-    <div class="row panel-small-text">
-      <a href="#" id="test"><img src="{{userImg}}" /></a>
+    <div class="row panel-small-text dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{userImg}}" /></a>
       <p>
-        <a href="#"><strong>{{userName}}</strong></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong>{{userName}}</strong></a>
         <em><br>@ {{climbGym}}<br>in {{climbEta}} minutes for a {{climbDuration}} minute session.</em> 
       </p>
+      <div class="dropdown-menu">
+        <div class="dropdown-inner">
+          <strong>{{userName}}</strong>
+          <p>More info eventually!</p>          
+        </div>        
+      </div>
     </div>
     <div class="row panel-message">
       <p>{{climbDetails}}</p>
@@ -18,11 +24,11 @@
   <div class="panel-body">
     {{#each replies}}
     <div class="media panel-reply">
-      <a class="pull-left" href="#">
+      <a class="pull-left">
         <img class="media-object" src="{{userImg}}">
       </a>
       <div class="media-body panel-small-text">
-        <p><a href="#"><strong class="media-heading">{{userName}}</strong></a> {{message}}</p>
+        <div><a><strong class="media-heading">{{userName}}</strong></a> {{message}}</div>
         <em><p>{{time}}</p></em>
       </div>                    
     </div>
@@ -36,3 +42,14 @@
   </div>
 
 </div>
+
+<!--
+<div class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown Tester <i class="fa fa-caret-down"></i></a>
+      <div class="dropdown-menu">
+        <div class="dropdown-inner">
+          <strong>{{displayName}}</strong>
+          <p>{{githubData.login}}</p>
+          <a href="/logout">Logout</a>
+        </div>        
+      </div>-->

@@ -50,7 +50,9 @@ var PostingView = Thorax.View.extend({
         // self.$el.removeClass('orange');
         
       });
-    };
+    } else {
+      self.$el.find('.text-danger').html('**VALIDATION FAIL**').fadeOut(0).fadeIn(250).fadeOut(1000);
+    }
   },  
     
   // addReplyEnter: function (e) {

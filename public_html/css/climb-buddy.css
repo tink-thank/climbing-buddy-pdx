@@ -162,6 +162,7 @@ body {
   background-size: cover; }
 
 .panel-login {
+  margin-top: 150px;
   background: rgba(255, 255, 255, 0.4);
   border-color: rgba(0, 0, 0, 0.21);
   border-radius: 0; }

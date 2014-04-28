@@ -12,10 +12,10 @@ var PostingView = Thorax.View.extend({
   },
   
   events: {
-//    'keydown .posting-reply':'addReplyEnter',
+   // 'keydown .posting-reply':'addReplyEnter',
     'click .posting-reply-button': 'addReply',
-    'click .posting-reply': 'edit',
-    'blur .posting-reply':'removeOrange'
+    // 'click .posting-reply': 'edit',
+    // 'blur .posting-reply':'removeOrange'
   },
   
   edit: function () {
@@ -27,35 +27,37 @@ var PostingView = Thorax.View.extend({
   },
 
   addReply: function () {
-    
+    // this.$el.addClass('orange');    
     var self = this;
-    
-    $.getJSON('/user', function (data) {
-      self.$el.addClass('orange');
-    
-      var replyArray = _.clone(self.model.get('replies'));
+    var replyMessage = this.$el.find('.posting-reply').val();
 
-      replyArray.push({
-        userName: data.displayName,
-        userImg: data.avatar,
-        message: $(".orange").find(".posting-reply").val(),
-        time: new Date().toDateString(),
-        timeStamp: Date.now()
-      });
-
-      self.model.save({ replies: replyArray });
-
-      self.$el.find('.posting-reply').val('');
-      self.$el.removeClass('orange');
+    if (replyMessage) {    
+      $.getJSON('/user', function (data) {        
       
-    });
-  },
-  
-//  addReplyEnter: function (e) {
-//			if (e.which === ENTER_KEY) {
-//				this.addReply(); 
-//			}   
-//  }
+        var replyArray = _.clone(self.model.get('replies'));
+
+        replyArray.push({
+          userName: data.displayName,
+          userImg: data.avatar,
+          message: replyMessage,
+          time: new Date().toDateString(),
+          timeStamp: Date.now()
+        });
+
+        self.model.save({ replies: replyArray });
+
+        self.$el.find('.posting-reply').val('');
+        // self.$el.removeClass('orange');
+        
+      });
+    };
+  },  
+    
+  // addReplyEnter: function (e) {
+		// if (e.which === ENTER_KEY) {
+		// 	this.addReply(); 
+		// }   
+  // }
   
   
 });

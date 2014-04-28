@@ -1,5 +1,3 @@
-var Reply = require('../models/reply.js');
-
 var PostingView = Thorax.View.extend({
   template: Handlebars.compile('{{collection}}') ,
   name: 'posting-view',

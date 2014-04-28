@@ -1,12 +1,40 @@
-@import 'offcanvas';
-@import 'topbar';
+@import '_sidebar';
+@import '_topbar';
+@import '_content';
+@import '_posting';
 
-body{
-  margin-top: 75px;
+.fa-vert{
+  padding-right: 10px;
+  float: left;
 }
 
-#main {
-  min-height: 310px;
+body{
+  background: url(../img/rock-climb-lg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.orange{}
+
+.navbar-default{
+  //background-color: rgb(64, 98, 124);
+  //border-color: #40627C;
+  //color: #FCFFF5;
+}
+
+.navbar-brand {
+  color: #FCFFF5;
+}
+
+.panel-collapse{
+  li{
+    list-style-type: none;
+  }
+  a{
+    color: #000;
+  }
 }
 
 .login-page {
@@ -23,13 +51,10 @@ body{
   border-radius: 0; 
 }
 
-.panel-posting{
-  img{
-    max-height: 75px;
-    max-width: 75px;
-  }
+.form-control{
+  border-radius: 0;
 }
 
-.orange{
-  //background: tomato;
+.btn{
+  border-radius: 0;
 }

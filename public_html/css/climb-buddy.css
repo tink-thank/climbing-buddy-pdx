@@ -17,7 +17,7 @@
   color: #FCFFF5; }
 
 .sidebar-intro {
-  padding-bottom: 20px; }
+  padding-bottom: 40px; }
   .sidebar-intro img {
     width: 65px;
     height: 65px;
@@ -164,4 +164,10 @@ body {
 .panel-login {
   background: rgba(255, 255, 255, 0.4);
   border-color: rgba(0, 0, 0, 0.21);
+  border-radius: 0; }
+
+.form-control {
+  border-radius: 0; }
+
+.btn {
   border-radius: 0; }

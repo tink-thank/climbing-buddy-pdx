@@ -1,46 +1,4 @@
-<!-- {{view collection }}
-<div class="panel panel-default panel-posting">
-  <div class="panel-heading">
-    <div class="row">
-      <div class="col-xs-2">
-        <img src="{{userImg}}" />
-      </div>
-      <div class="col-xs-10 panel-emphasis">
-        <strong>{{userName}}</strong>
-        <em>@ {{climbGym}} in {{climbEta}} for {{climbDuration}} minutes</em>
-        {{#if climbDetails}}
-        <br/>
-        <p>{{climbDetails}}</p>
-        {{/if}}
-      </div>
-    </div>
-  </div>
-  
-  {{#if replies}}
-  <div class="panel-body">
-    {{#each replies}}
-    <div class="list-group">
-      <div href="#" class="list-group-item">
-                    <div class="col-xs-2"><img class="img-responsive"  src="{{this.userImg}}" /></div>
-        <p class="list-group-item-text">
-          <strong>{{this.userName}}</strong> - {{this.message}}
-          <br>
-          <small>{{this.time}}</small>
-        </p>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-  
-  <div class="panel-footer">
-    <textarea class="form-control posting-reply" rows="1" type="text" name="posting-reply" placeholder="Maybe we should meet up..."></textarea>
-    <button class="btn btn-default posting-reply-button" type="submit">Reply</button>
-  </div>
-</div> -->
-
-
-{{view collection }}
+{{view collection}}
 <div class="panel panel-default panel-posting">
   
   <div class="panel-heading">                  
@@ -64,7 +22,7 @@
         <img class="media-object" src="{{userImg}}">
       </a>
       <div class="media-body panel-small-text">
-        <p><a><strong class="media-heading">{{userName}}</strong></a> {{message}}</p>
+        <p><a href="#"><strong class="media-heading">{{userName}}</strong></a> {{message}}</p>
         <em><p>{{time}}</p></em>
       </div>                    
     </div>

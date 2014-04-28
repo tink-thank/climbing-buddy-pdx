@@ -19,11 +19,11 @@ $(function () {
     var postings = new Postings();
     postings.fetch();
 
-    var topBar = new TopBar()
-    var topBarView = new TopBarView({model: topBar});
-
     var formView = new FormView({collection:postings});
     var appView = new PostColView({collection:postings});
+
+    var topBar = new TopBar()
+    var topBarView = new TopBarView({model: topBar});
 
     myClimbingRouter.route("circuit-ne", "showNE", function () {
             appView.collection.forEach(function (model){

@@ -7,7 +7,7 @@
 }
 
 #sidebar-wrapper {
-  padding-top: 50px;
+  padding-top: 35px;
   margin-left: -250px;
   left: 250px;
   width: 250px;
@@ -21,8 +21,25 @@
   
 }
 
+.sidebar-guy{
+  margin-top: 15px;
+}
+
+.sidebar-group{
+  a{
+    color: white;
+    
+  }
+  .dropdown-menu{
+    color: black;
+    a{
+      color: black;
+    }
+  }
+}
+
 .sidebar-intro{
-  padding-bottom: 40px;
+  padding-bottom: 28px;
    img{
      width: 65px;
      height: 65px;

@@ -54,7 +54,7 @@ var FormView = Thorax.View.extend({
         $('#climb-eta').val('');
         $('#climb-duration').val('');
         $('#climb-details').val('');
-        $('.row-offcanvas').toggleClass('active');
+        $("#wrapper").toggleClass("active");
     });
   },
 });

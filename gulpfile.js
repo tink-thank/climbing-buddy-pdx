@@ -8,6 +8,7 @@ var nodemon = require('gulp-nodemon');
 var colors = require('colors');
 var express = require('express');
 var app = express();
+var minify = require('gulp-minify-css');
 
 //For my super-silly timestamp generator.
 var timer = require('./times.js');
@@ -28,8 +29,9 @@ gulp.task ('scripts', function () {
   gulp.src('app/js/main.js')
     .pipe(browserify ({
       transform: [browserifyHbs],
-      debug : !gulp.env.production
+      //debug : !gulp.env.production
     }))
+    .pipe(uglify())
     .pipe(gulp.dest('public_html/js'));
 
   console.log('[' +timer.timeStamp().red.bold+ '] the jerbascript are prepared!'.bold);
@@ -42,6 +44,7 @@ gulp.task ('scripts', function () {
 gulp.task('sass', function () {
   gulp.src(paths.scss)
     .pipe(sass())
+    .pipe(minify())
     .pipe(gulp.dest(paths.css));
 
   console.log('[' +timer.timeStamp().red.bold+ '] mmmm \'dat sass!'.bold);

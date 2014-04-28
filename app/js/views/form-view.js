@@ -34,27 +34,33 @@ var FormView = Thorax.View.extend({
       };
 
       var postingId = self.postingIdMaker();
-       
-
-      self.collection.create({
-        postingId: postingId,
-        title: 'posting-' + postingId,
-        timeStamp: Date.now(),
-        userName: data.displayName,
-        userImg: data.avatar,
-        climbGym: clmb.gym,
-        climbEta: clmb.eta,
-        climbDuration: clmb.duration,
-        climbDetails: clmb.details,
-        replies: [],
-        id: postingId,
-      });
-
+      
+      if (clmb.gym != 'null' && clmb.eta != 'null' && clmb.duration != 'null') {
+        self.collection.create({
+          postingId: postingId,
+          title: 'posting-' + postingId,
+          timeStamp: Date.now(),
+          userName: data.displayName,
+          userImg: data.avatar,
+          climbGym: clmb.gym,
+          climbEta: clmb.eta,
+          climbDuration: clmb.duration,
+          climbDetails: clmb.details,
+          replies: [],
+          id: postingId,
+        });
+        
         $('#climb-gym').val('');
         $('#climb-eta').val('');
         $('#climb-duration').val('');
         $('#climb-details').val('');
         $("#wrapper").toggleClass("active");
+
+      } else {
+        self.$el.find('.text-danger').html('**VALIDATION FAIL**').fadeOut(0).fadeIn(250).fadeOut(1000);
+      }
+
+
     });
   },
 });

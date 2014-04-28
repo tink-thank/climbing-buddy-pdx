@@ -1,4 +1,4 @@
-var PostingView = Thorax.View.extend({
+var PostingView = Thorax.View.extend({  
   template: Handlebars.compile('{{collection}}') ,
   name: 'posting-view',
   
@@ -10,7 +10,8 @@ var PostingView = Thorax.View.extend({
     this.render();
     this.listenTo(this.model, 'change', this.render);
   },
-  
+
+
   events: {
 //    'keydown .posting-reply':'addReplyEnter',
     'click .posting-reply-button': 'addReply',

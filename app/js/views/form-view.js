@@ -56,6 +56,8 @@ var FormView = Thorax.View.extend({
         $('#climb-details').val('');
         $("#wrapper").toggleClass("active");
 
+      } else {
+        self.$el.find('.text-danger').html('**VALIDATION FAIL**').fadeOut(0).fadeIn(250).fadeOut(1000);
       }
 
 

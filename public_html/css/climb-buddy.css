@@ -147,6 +147,9 @@
 .panel-group .panel {
   border-radius: 0; }
 
+.formatted-time {
+  padding-right: 10px; }
+
 .panel-about {
   padding-left: 10px; }
   .panel-about p {
@@ -202,7 +205,8 @@ body {
   border-radius: 0; }
 
 .dropdown-inner {
-  margin: 0 0 0 10px; }
+  margin: 0 0 0 10px;
+  padding-right: 15px; }
 
 .submit-line .btn-link {
   color: tomato; }

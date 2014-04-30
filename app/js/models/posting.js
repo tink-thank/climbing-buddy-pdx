@@ -4,6 +4,13 @@ var Posting = Thorax.Model.extend({
   urlRoot: '/posts',
   
   initialize: function () {
+
+//    var timeString = this.get('timeStamp');
+//    var longDate = new Date(timeString);
+//    var formattedDate = longDate.toDateString() + " " + longDate.toLocaleTimeString("en-US");
+//    console.log(formattedDate);
+//    this.formattedDate = formattedDate;
+
     this.save();
   },
 

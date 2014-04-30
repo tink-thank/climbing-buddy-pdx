@@ -147,6 +147,9 @@
 .panel-group .panel {
   border-radius: 0; }
 
+.formatted-time {
+  padding-right: 10px; }
+
 .panel-about {
   padding-left: 10px; }
   .panel-about p {

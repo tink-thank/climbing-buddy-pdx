@@ -21,6 +21,11 @@ var FormView = Thorax.View.extend({
   createOnEnter: function () {
     
   },
+  
+  dateFormatter: function (timeIn) {
+    var longDate = new Date(timeIn);
+    return (longDate.toDateString() + " " + longDate.toLocaleTimeString("en-US"));
+  },
 
   newPosting: function () {
     var self = this;   
@@ -48,6 +53,7 @@ var FormView = Thorax.View.extend({
           climbDetails: clmb.details,
           replies: [],
           id: postingId,
+          formattedDate: self.dateFormatter( Date.now() )
         });
         
         $('#climb-gym').val('');
@@ -66,3 +72,7 @@ var FormView = Thorax.View.extend({
 });
 
 module.exports = FormView;
+
+//      var timeString = this.model.get('timeStamp');
+//      var longDate = new Date(timeString);
+//      var formattedDate = longDate.toDateString() + " " + longDate.toLocaleTimeString("en-US");

@@ -7,6 +7,12 @@ var PostingView = Thorax.View.extend({
   },
   
   initialize: function () {
+    var timeString = this.model.get('timeStamp');
+    var longDate = new Date(timeString);
+    var formattedDate = longDate.toDateString() + " " + longDate.toLocaleTimeString("en-US");
+    this.model.set("formattedDate", formattedDate);
+    console.log(this.model.get(formattedDate));
+    // console.log((formattedDate));
     this.render();
     this.listenTo(this.model, 'change', this.render);
   },

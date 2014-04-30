@@ -6,6 +6,15 @@ var Posting = Thorax.Model.extend({
   initialize: function () {
     this.save();
   },
+
+  addTime: function () {
+    // var timeString = this.get('timeStamp');
+    // var longDate = new Date(timeString);
+    // var formattedDate = longDate.toDateString() + " " + longDate.toLocaleTimeString("en-US");
+    // console.log(formattedDate);
+    // this.formattedDate = formattedDate;
+    // parseInt(item.value.timeStamp, 10)
+  }
   
 //  defaults: {
 //    postingId: 10000,

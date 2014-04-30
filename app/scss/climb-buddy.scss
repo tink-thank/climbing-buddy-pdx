@@ -2,6 +2,11 @@
 @import '_topbar';
 @import '_content';
 @import '_posting';
+@import '_about';
+
+div {
+  font-family: 'Open Sans', sans-serif;
+}
 
 .fa-vert{
   padding-right: 10px;

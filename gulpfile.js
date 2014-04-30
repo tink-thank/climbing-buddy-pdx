@@ -44,7 +44,7 @@ gulp.task ('scripts', function () {
 gulp.task('sass', function () {
   gulp.src(paths.scss)
     .pipe(sass())
-    .pipe(minify())
+    //.pipe(minify())
     .pipe(gulp.dest(paths.css));
 
   console.log('[' +timer.timeStamp().red.bold+ '] mmmm \'dat sass!'.bold);
@@ -56,11 +56,11 @@ gulp.task('sass', function () {
 //It's a bug and it's on GitHub, hopefully he'll fix it...
 gulp.task('express-server', function () {
   nodemon({
-      script:'server.js',
-      ext: 'js',
-      env: { 'NODE_ENV': 'development' },
-      ignore: ['app/*', 'public_html/*', 'app/main.js'],
-      verbose: true
+      script:'devserv.js',
+      //ext: 'js',
+      //env: { 'NODE_ENV': 'development' },
+      //ignore: ['app/*', 'public_html/*', 'app/main.js'],
+      //verbose: true
     })
     .on('restart', function () {
       console.log('[' + 'tink-thank'.green.bold + ']' +' Restarting the server'.bold);
@@ -93,3 +93,4 @@ gulp.task('static-server', function() {
 //gulp express for much win in the command line!
 gulp.task('express', ['sass', 'scripts', 'express-server', 'watch']);
 gulp.task('static', ['sass', 'scripts', 'static-server', 'watch']);
+gulp.task('watcher', ['sass', 'scripts', 'watch']);

@@ -11,4 +11,4 @@ var Postings = Thorax.Collection.extend({
     }
 });
 
-module.exports = Postings
+module.exports = Postings;

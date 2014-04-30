@@ -3,11 +3,14 @@
   
   <div class="panel-heading">                  
     <div class="row panel-small-text dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{userImg}}" /></a>
-      <p>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong>{{userName}}</strong></a>
-        <em><br>@ {{climbGym}}<br>in {{climbEta}} minutes for a {{climbDuration}} minute session.</em> 
-      </p>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="{{userImg}}" />      
+        <strong>{{userName}}</strong>
+      </a>
+        <p>
+          <em>@ {{climbGym}}<br>in {{climbEta}} minutes for a {{climbDuration}} minute session.</em> 
+        </p>
+      
       <div class="dropdown-menu">
         <div class="dropdown-inner">
           <strong>{{userName}}</strong>
@@ -24,9 +27,9 @@
   <div class="panel-body">
     {{#each replies}}
     <div class="media panel-reply">
-      <a class="pull-left">
+      <div class="pull-left">
         <img class="media-object" src="{{userImg}}">
-      </a>
+      </div>
       <div class="media-body panel-small-text">
         <div><a><strong class="media-heading">{{userName}}</strong></a> {{message}}</div>
         <em><p>{{time}}</p></em>
